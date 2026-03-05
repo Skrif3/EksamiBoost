@@ -1,0 +1,3621 @@
+<!doctype html>
+<html lang="et">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9. klass — Eksami Ettevalmistus</title>
+    <style>
+      :root {
+        --bg: #f0f4f8;
+        --surface: #ffffff;
+        --surface2: #f8fafc;
+        --border: #e2e8f0;
+        --text: #1a202c;
+        --text2: #4a5568;
+        --text3: #718096;
+        --primary: #6366f1;
+        --primary-light: #e0e7ff;
+        --primary-dark: #4f46e5;
+        --math: #10b981;
+        --math-light: #d1fae5;
+        --estonian: #f59e0b;
+        --estonian-light: #fef3c7;
+        --danger: #ef4444;
+        --danger-light: #fee2e2;
+        --success: #10b981;
+        --success-light: #d1fae5;
+        --hint: #f59e0b;
+        --hint-light: #fffbeb;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        --radius: 16px;
+        --radius-sm: 10px;
+      }
+      [data-theme="dark"] {
+        --bg: #0f1117;
+        --surface: #1a1d27;
+        --surface2: #22263a;
+        --border: #2d3348;
+        --text: #f1f5f9;
+        --text2: #94a3b8;
+        --text3: #64748b;
+        --primary: #818cf8;
+        --primary-light: #1e1b4b;
+        --primary-dark: #6366f1;
+        --math-light: #064e3b;
+        --estonian-light: #451a03;
+        --danger-light: #450a0a;
+        --success-light: #064e3b;
+        --hint-light: #451a03;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        transition:
+          background 0.3s,
+          color 0.3s;
+        -webkit-font-smoothing: antialiased;
+      }
+      /* ── NAV ── */
+      .nav {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--shadow);
+      }
+      .nav-brand {
+        font-weight: 700;
+        font-size: 17px;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .nav-brand span {
+        font-size: 20px;
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .btn-icon {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 8px 12px;
+        cursor: pointer;
+        font-size: 14px;
+        color: var(--text2);
+        transition: all 0.15s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .btn-icon:hover {
+        background: var(--primary-light);
+        color: var(--primary);
+        border-color: var(--primary);
+      }
+      /* ── PAGES ── */
+      .page {
+        display: none;
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 24px 16px 100px;
+      }
+      .page.active {
+        display: block;
+      }
+      /* ── HOME ── */
+      .hero {
+        background: linear-gradient(135deg, var(--primary) 0%, #8b5cf6 100%);
+        border-radius: var(--radius);
+        padding: 32px 24px;
+        color: white;
+        margin-bottom: 24px;
+        text-align: center;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+      .hero p {
+        opacity: 0.85;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+      .overall-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .stat-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 16px 12px;
+        text-align: center;
+        box-shadow: var(--shadow);
+      }
+      .stat-card .value {
+        font-size: 26px;
+        font-weight: 800;
+        color: var(--primary);
+      }
+      .stat-card .label {
+        font-size: 12px;
+        color: var(--text3);
+        margin-top: 4px;
+      }
+      .section-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text3);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 12px;
+      }
+      .subject-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+      .subject-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: var(--shadow);
+      }
+      .subject-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary);
+      }
+      .subject-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .subject-card-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .subject-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
+      .subject-icon.math {
+        background: var(--math-light);
+      }
+      .subject-icon.est {
+        background: var(--estonian-light);
+      }
+      .subject-name {
+        font-weight: 700;
+        font-size: 17px;
+      }
+      .subject-sub {
+        font-size: 13px;
+        color: var(--text3);
+        margin-top: 2px;
+      }
+      .subject-score {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--primary);
+      }
+      .progress-bar-wrap {
+        background: var(--border);
+        border-radius: 99px;
+        height: 8px;
+        overflow: hidden;
+      }
+      .progress-bar-fill {
+        height: 100%;
+        border-radius: 99px;
+        transition: width 0.5s ease;
+      }
+      .progress-bar-fill.math {
+        background: linear-gradient(90deg, var(--math), #34d399);
+      }
+      .progress-bar-fill.est {
+        background: linear-gradient(90deg, var(--estonian), #fcd34d);
+      }
+      .progress-info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6px;
+        font-size: 12px;
+        color: var(--text3);
+      }
+      .exam-card {
+        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+        border-radius: var(--radius);
+        padding: 20px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .exam-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+      .exam-card-left h3 {
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .exam-card-left p {
+        opacity: 0.75;
+        font-size: 13px;
+        margin-top: 4px;
+      }
+      .exam-card-icon {
+        font-size: 36px;
+      }
+      /* ── TOPICS PAGE ── */
+      .page-header {
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .back-btn {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 8px 14px;
+        cursor: pointer;
+        font-size: 14px;
+        color: var(--text2);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.15s;
+      }
+      .back-btn:hover {
+        background: var(--primary-light);
+        color: var(--primary);
+      }
+      .page-title {
+        font-size: 22px;
+        font-weight: 800;
+      }
+      .topics-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .topic-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 18px;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: var(--shadow);
+      }
+      .topic-card:hover {
+        border-color: var(--primary);
+        transform: translateX(4px);
+      }
+      .topic-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .topic-icon-wrap {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        background: var(--primary-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
+      .topic-name {
+        font-weight: 600;
+        font-size: 16px;
+      }
+      .topic-meta {
+        font-size: 12px;
+        color: var(--text3);
+        margin-top: 3px;
+      }
+      .topic-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .topic-badge {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 99px;
+        background: var(--primary-light);
+        color: var(--primary);
+      }
+      .topic-badge.done {
+        background: var(--success-light);
+        color: var(--success);
+      }
+      .chevron {
+        color: var(--text3);
+        font-size: 18px;
+      }
+      /* ── QUIZ PAGE ── */
+      .quiz-header {
+        margin-bottom: 20px;
+      }
+      .quiz-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .quiz-topic {
+        font-size: 13px;
+        color: var(--text3);
+        font-weight: 600;
+      }
+      .quiz-progress-text {
+        font-size: 13px;
+        color: var(--text3);
+      }
+      .quiz-progress-bar {
+        background: var(--border);
+        border-radius: 99px;
+        height: 6px;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+      .quiz-progress-fill {
+        height: 100%;
+        border-radius: 99px;
+        background: var(--primary);
+        transition: width 0.4s ease;
+      }
+      .question-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+        margin-bottom: 16px;
+        box-shadow: var(--shadow);
+      }
+      .question-points {
+        font-size: 12px;
+        color: var(--text3);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .question-text {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.4;
+        font-family: "SF Mono", "Fira Code", monospace;
+        background: var(--surface2);
+        padding: 16px;
+        border-radius: 10px;
+        border-left: 4px solid var(--primary);
+        word-break: break-word;
+      }
+      .options-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .option-btn {
+        background: var(--surface2);
+        border: 2px solid var(--border);
+        border-radius: 12px;
+        padding: 14px 18px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text);
+        text-align: left;
+        transition: all 0.15s;
+        width: 100%;
+      }
+      .option-btn:hover:not(:disabled) {
+        border-color: var(--primary);
+        background: var(--primary-light);
+        color: var(--primary);
+      }
+      .option-btn.correct {
+        border-color: var(--success) !important;
+        background: var(--success-light) !important;
+        color: var(--success) !important;
+      }
+      .option-btn.wrong {
+        border-color: var(--danger) !important;
+        background: var(--danger-light) !important;
+        color: var(--danger) !important;
+      }
+      .option-btn.selected {
+        border-color: var(--primary);
+        background: var(--primary-light);
+        color: var(--primary);
+      }
+      .input-wrap {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+      }
+      .answer-input {
+        flex: 1;
+        padding: 14px 18px;
+        font-size: 18px;
+        font-weight: 600;
+        border: 2px solid var(--border);
+        border-radius: 12px;
+        background: var(--surface2);
+        color: var(--text);
+        outline: none;
+        transition: border-color 0.15s;
+        font-family: "SF Mono", "Fira Code", monospace;
+      }
+      .answer-input:focus {
+        border-color: var(--primary);
+      }
+      .answer-input.correct {
+        border-color: var(--success);
+        background: var(--success-light);
+      }
+      .answer-input.wrong {
+        border-color: var(--danger);
+        background: var(--danger-light);
+      }
+      .submit-btn {
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 14px 24px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.15s;
+        white-space: nowrap;
+      }
+      .submit-btn:hover {
+        background: var(--primary-dark);
+      }
+      .submit-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      /* ── HINT ── */
+      .hint-section {
+        margin-top: 16px;
+      }
+      .hint-btn {
+        background: var(--hint-light);
+        border: 1.5px solid var(--hint);
+        color: var(--hint);
+        border-radius: 10px;
+        padding: 10px 18px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.15s;
+        width: 100%;
+        justify-content: center;
+      }
+      .hint-btn:hover {
+        background: var(--hint);
+        color: white;
+      }
+      .hint-box {
+        background: var(--hint-light);
+        border: 1.5px solid var(--hint);
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin-top: 10px;
+        font-size: 14px;
+        color: var(--text);
+        line-height: 1.5;
+        animation: fadeIn 0.3s ease;
+      }
+      .hint-header {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--hint);
+        margin-bottom: 6px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .hint-cost {
+        font-size: 11px;
+        color: var(--text3);
+      }
+      /* ── FEEDBACK ── */
+      .feedback-card {
+        border-radius: 12px;
+        padding: 16px 18px;
+        margin-top: 16px;
+        animation: slideUp 0.3s ease;
+      }
+      .feedback-card.correct {
+        background: var(--success-light);
+        border: 1.5px solid var(--success);
+      }
+      .feedback-card.wrong {
+        background: var(--danger-light);
+        border: 1.5px solid var(--danger);
+      }
+      .feedback-title {
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .feedback-card.correct .feedback-title {
+        color: var(--success);
+      }
+      .feedback-card.wrong .feedback-title {
+        color: var(--danger);
+      }
+      .solution-steps {
+        margin-top: 10px;
+      }
+      .solution-steps p {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text3);
+        margin-bottom: 6px;
+      }
+      .steps-list {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .step {
+        font-size: 14px;
+        font-family: "SF Mono", "Fira Code", monospace;
+        color: var(--text);
+        background: var(--surface);
+        padding: 6px 10px;
+        border-radius: 6px;
+      }
+      .quiz-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .next-btn {
+        flex: 1;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 16px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .next-btn:hover {
+        background: var(--primary-dark);
+        transform: translateY(-1px);
+      }
+      /* ── TOPIC COMPLETE ── */
+      .topic-complete {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 32px 24px;
+        text-align: center;
+        box-shadow: var(--shadow-lg);
+        animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .complete-emoji {
+        font-size: 56px;
+        margin-bottom: 16px;
+      }
+      .complete-title {
+        font-size: 24px;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+      .complete-sub {
+        color: var(--text2);
+        font-size: 15px;
+        line-height: 1.5;
+      }
+      .score-display {
+        margin: 24px 0;
+        padding: 20px;
+        background: var(--primary-light);
+        border-radius: 12px;
+      }
+      .score-big {
+        font-size: 48px;
+        font-weight: 900;
+        color: var(--primary);
+      }
+      .score-label {
+        font-size: 14px;
+        color: var(--text3);
+        margin-top: 4px;
+      }
+      .complete-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 16px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.15s;
+        width: 100%;
+      }
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-1px);
+      }
+      .btn-secondary {
+        background: var(--surface2);
+        color: var(--text);
+        border: 1.5px solid var(--border);
+        border-radius: 12px;
+        padding: 14px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s;
+        width: 100%;
+      }
+      .btn-secondary:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+      /* ── EXAM ── */
+      .exam-setup {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 28px 24px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        margin-bottom: 20px;
+      }
+      .exam-setup h2 {
+        font-size: 24px;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+      .exam-setup p {
+        color: var(--text2);
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+      .exam-info-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .exam-info-item {
+        background: var(--surface2);
+        border-radius: 10px;
+        padding: 14px 10px;
+        text-align: center;
+        border: 1px solid var(--border);
+      }
+      .exam-info-item .val {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--primary);
+      }
+      .exam-info-item .lbl {
+        font-size: 11px;
+        color: var(--text3);
+        margin-top: 4px;
+      }
+      .timer-bar {
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 10px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 60px;
+        z-index: 50;
+      }
+      .timer-display {
+        font-size: 18px;
+        font-weight: 800;
+        font-family: monospace;
+      }
+      .timer-display.warning {
+        color: var(--danger);
+        animation: pulse 1s infinite;
+      }
+      .timer-progress {
+        flex: 1;
+        margin: 0 16px;
+        background: var(--border);
+        border-radius: 99px;
+        height: 8px;
+        overflow: hidden;
+      }
+      .timer-fill {
+        height: 100%;
+        background: var(--primary);
+        border-radius: 99px;
+        transition:
+          width 1s linear,
+          background 0.3s;
+      }
+      .timer-fill.warning {
+        background: var(--danger);
+      }
+      .exam-q-counter {
+        font-size: 13px;
+        color: var(--text3);
+      }
+      .exam-results {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 28px 24px;
+        text-align: center;
+        box-shadow: var(--shadow-lg);
+        animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .exam-grade {
+        font-size: 64px;
+        font-weight: 900;
+        margin: 16px 0;
+      }
+      .grade-A {
+        color: #10b981;
+      }
+      .grade-B {
+        color: #3b82f6;
+      }
+      .grade-C {
+        color: #f59e0b;
+      }
+      .grade-D {
+        color: #ef4444;
+      }
+      .results-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 20px 0;
+      }
+      .result-item {
+        background: var(--surface2);
+        border-radius: 10px;
+        padding: 14px;
+        border: 1px solid var(--border);
+      }
+      .result-item .v {
+        font-size: 22px;
+        font-weight: 800;
+      }
+      .result-item .l {
+        font-size: 12px;
+        color: var(--text3);
+        margin-top: 4px;
+      }
+      .result-item .v.green {
+        color: var(--success);
+      }
+      .result-item .v.red {
+        color: var(--danger);
+      }
+      .result-item .v.blue {
+        color: var(--primary);
+      }
+      .reco-section {
+        text-align: left;
+        margin-top: 20px;
+        padding: 16px;
+        background: var(--primary-light);
+        border-radius: 12px;
+      }
+      .reco-section h4 {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 8px;
+      }
+      .reco-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .reco-list li {
+        font-size: 13px;
+        color: var(--text2);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      /* BOTTOM NAV */
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        display: flex;
+        padding-bottom: env(safe-area-inset-bottom);
+        z-index: 99;
+      }
+      .nav-tab {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 8px 8px;
+        cursor: pointer;
+        color: var(--text3);
+        font-size: 11px;
+        font-weight: 600;
+        transition: all 0.15s;
+        gap: 4px;
+        border: none;
+        background: none;
+      }
+      .nav-tab .icon {
+        font-size: 22px;
+        transition: transform 0.2s;
+      }
+      .nav-tab.active {
+        color: var(--primary);
+      }
+      .nav-tab.active .icon {
+        transform: translateY(-2px);
+      }
+      .nav-tab:hover {
+        color: var(--primary);
+      }
+      /* ANIMATIONS */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.92);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      /* UTILS */
+      .hidden {
+        display: none !important;
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 99px;
+      }
+      .tag.math {
+        background: var(--math-light);
+        color: var(--math);
+      }
+      .tag.est {
+        background: var(--estonian-light);
+        color: var(--estonian);
+      }
+
+      /* ── DIFFICULTY SELECTOR ── */
+      .diff-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+      .diff-btn { border: 2px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); padding: 10px 6px; cursor: pointer; text-align: center; transition: all 0.15s; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+      .diff-btn:hover { border-color: var(--primary); }
+      .diff-btn .d-icon { font-size: 18px; }
+      .diff-btn .d-name { font-size: 13px; font-weight: 700; color: var(--text); }
+      .diff-btn .d-sub  { font-size: 11px; color: var(--text3); }
+      .diff-btn.sel-easy   { border-color: #10b981; background: var(--success-light); }
+      .diff-btn.sel-medium { border-color: #f59e0b; background: var(--hint-light); }
+      .diff-btn.sel-hard   { border-color: #ef4444; background: var(--danger-light); }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="nav-brand"><span>🎓</span> EksamiBoost</div>
+      <div class="nav-actions">
+        <button class="btn-icon" id="themeBtn" onclick="toggleTheme()">
+          🌙 Tume
+        </button>
+      </div>
+    </nav>
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+      <button class="nav-tab active" id="tab-home" onclick="showPage('home')">
+        <span class="icon">🏠</span>Avaleht
+      </button>
+      <button class="nav-tab" id="tab-math" onclick="showSubject('math')">
+        <span class="icon">📐</span>Matemaatika
+      </button>
+      <button
+        class="nav-tab"
+        id="tab-estonian"
+        onclick="showSubject('estonian')"
+      >
+        <span class="icon">📖</span>Eesti keel
+      </button>
+      <button class="nav-tab" id="tab-exam" onclick="showPage('exam')">
+        <span class="icon">📝</span>Eksam
+      </button>
+    </div>
+
+    <!-- ═══════════ PAGE: HOME ═══════════ -->
+    <div class="page active" id="page-home">
+      <div class="hero">
+        <h1>Tere tulemast! 👋</h1>
+        <p>
+          Sinu 9. klassi eksamikaaslane.<br />Proovi, korda, valmista end ette.
+        </p>
+      </div>
+      <div class="overall-stats">
+        <div class="stat-card">
+          <div class="value" id="stat-questions">0</div>
+          <div class="label">Vastatud</div>
+        </div>
+        <div class="stat-card">
+          <div class="value" id="stat-points">0</div>
+          <div class="label">Punktid</div>
+        </div>
+        <div class="stat-card">
+          <div class="value" id="stat-topics">0</div>
+          <div class="label">Teemat tehtud</div>
+        </div>
+      </div>
+
+      <div class="section-title">Ained</div>
+      <div class="subject-cards">
+        <div class="subject-card" onclick="showSubject('math')">
+          <div class="subject-card-header">
+            <div class="subject-card-title">
+              <div class="subject-icon math">📐</div>
+              <div>
+                <div class="subject-name">Matemaatika</div>
+                <div class="subject-sub" id="math-sub">
+                  6 teemat · 30 ülesannet
+                </div>
+              </div>
+            </div>
+            <div class="subject-score" id="math-score">0p</div>
+          </div>
+          <div class="progress-bar-wrap">
+            <div
+              class="progress-bar-fill math"
+              id="math-bar"
+              style="width: 0%"
+            ></div>
+          </div>
+          <div class="progress-info">
+            <span id="math-done">0 teemat tehtud</span>
+            <span id="math-pct">0%</span>
+          </div>
+        </div>
+
+        <div class="subject-card" onclick="showSubject('estonian')">
+          <div class="subject-card-header">
+            <div class="subject-card-title">
+              <div class="subject-icon est">📖</div>
+              <div>
+                <div class="subject-name">Eesti keel</div>
+                <div class="subject-sub" id="est-sub">
+                  4 teemat · 25 ülesannet
+                </div>
+              </div>
+            </div>
+            <div class="subject-score" id="est-score">0p</div>
+          </div>
+          <div class="progress-bar-wrap">
+            <div
+              class="progress-bar-fill est"
+              id="est-bar"
+              style="width: 0%"
+            ></div>
+          </div>
+          <div class="progress-info">
+            <span id="est-done">0 teemat tehtud</span>
+            <span id="est-pct">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">Proovieksam</div>
+      <div class="exam-card" onclick="showPage('exam')">
+        <div class="exam-card-left">
+          <h3>Proovieksam</h3>
+          <p>20 küsimust · 30 minutit · punktiarvestus</p>
+        </div>
+        <div class="exam-card-icon">📝</div>
+      </div>
+    </div>
+
+    <!-- ═══════════ PAGE: TOPICS ═══════════ -->
+    <div class="page" id="page-topics">
+      <div class="page-header">
+        <button class="back-btn" onclick="showPage('home')">← Tagasi</button>
+        <div class="page-title" id="topics-title">Teemad</div>
+      </div>
+      <div class="section-title" style="margin-bottom:10px">Raskustase</div>
+      <div class="diff-row">
+        <button class="diff-btn sel-easy" id="diff-easy" onclick="setDiff('easy')"><span class="d-icon">🟢</span><span class="d-name">Lihtne</span><span class="d-sub">pts ≤ 2</span></button>
+        <button class="diff-btn sel-medium" id="diff-medium" onclick="setDiff('medium')"><span class="d-icon">🟡</span><span class="d-name">Keskmine</span><span class="d-sub">kõik</span></button>
+        <button class="diff-btn" id="diff-hard" onclick="setDiff('hard')"><span class="d-icon">🔴</span><span class="d-name">Raske</span><span class="d-sub">pts ≥ 3</span></button>
+      </div>
+      <div class="topics-grid" id="topics-grid"></div>
+    </div>
+
+    <!-- ═══════════ PAGE: QUIZ ═══════════ -->
+    <div class="page" id="page-quiz">
+      <div class="page-header">
+        <button class="back-btn" id="quiz-back-btn">← Teemad</button>
+        <div>
+          <div class="page-title" id="quiz-title"></div>
+          <div
+            style="font-size: 13px; color: var(--text3); margin-top: 2px"
+            id="quiz-subject-tag"
+          ></div>
+        </div>
+      </div>
+      <div class="quiz-header">
+        <div class="quiz-meta">
+          <span class="quiz-topic" id="q-topic-label"></span>
+          <span class="quiz-progress-text" id="q-progress-text">1 / 5</span>
+        </div>
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="q-progress-fill"></div>
+        </div>
+      </div>
+      <div id="quiz-content"></div>
+    </div>
+
+    <!-- ═══════════ PAGE: EXAM ═══════════ -->
+    <div class="page" id="page-exam">
+      <div id="exam-setup-view">
+        <div class="exam-setup">
+          <div style="font-size: 48px; margin-bottom: 12px">📝</div>
+          <h2>Proovieksam</h2>
+          <p>
+            Simuleeritud eksamitingimused — ajapiirang, punktisüsteem,
+            lõpuanalüüs.
+          </p>
+          <div class="exam-info-grid">
+            <div class="exam-info-item">
+              <div class="val">20</div>
+              <div class="lbl">Küsimust</div>
+            </div>
+            <div class="exam-info-item">
+              <div class="val">30</div>
+              <div class="lbl">Minutit</div>
+            </div>
+            <div class="exam-info-item">
+              <div class="val">60p</div>
+              <div class="lbl">Max punktid</div>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="startExam()">
+            🚀 Alusta eksamit
+          </button>
+        </div>
+        <div id="exam-history-wrap" class="hidden">
+          <div class="section-title" style="margin-top: 8px">
+            Varasemad tulemused
+          </div>
+          <div id="exam-history-list"></div>
+        </div>
+      </div>
+      <div id="exam-active-view" class="hidden">
+        <div class="timer-bar">
+          <div class="timer-display" id="timer-display">30:00</div>
+          <div class="timer-progress">
+            <div class="timer-fill" id="timer-fill" style="width: 100%"></div>
+          </div>
+          <div class="exam-q-counter" id="exam-q-counter">1/20</div>
+        </div>
+        <div style="padding-top: 16px" id="exam-quiz-content"></div>
+      </div>
+      <div id="exam-results-view" class="hidden"></div>
+    </div>
+
+    <script>
+      // ═══════════════════════════════════════════
+      // DATA
+      // ═══════════════════════════════════════════
+      const DATA = {
+        math: {
+          name: "Matemaatika",
+          icon: "📐",
+          color: "math",
+          topics: [
+            {
+              id: "linear",
+              name: "Lineaarvõrrandid",
+              icon: "📐",
+              questions: [
+                {
+                  id: "le1",
+                  type: "input",
+                  q: "3x + 5 = 20",
+                  ans: "5",
+                  pts: 2,
+                  hints: [
+                    "Proovi 5 mõlemalt poolelt lahutada.",
+                    "3x = 20 − 5 = 15",
+                    "Jaga 3-ga: x = ?",
+                  ],
+                  steps: ["3x + 5 = 20", "3x = 15", "x = 5"],
+                },
+                {
+                  id: "le2",
+                  type: "input",
+                  q: "2x − 8 = 12",
+                  ans: "10",
+                  pts: 2,
+                  hints: ["Lisa mõlemale poolele 8.", "2x = 20", "Jaga 2-ga."],
+                  steps: ["2x − 8 = 12", "2x = 20", "x = 10"],
+                },
+                {
+                  id: "le3",
+                  type: "input",
+                  q: "5x + 3 = 3x + 11",
+                  ans: "4",
+                  pts: 3,
+                  hints: [
+                    "Kogu x-id ühele poolele.",
+                    "5x − 3x = 11 − 3",
+                    "2x = 8",
+                  ],
+                  steps: ["5x − 3x = 11 − 3", "2x = 8", "x = 4"],
+                },
+                {
+                  id: "le4",
+                  type: "input",
+                  q: "4(x − 2) = 12",
+                  ans: "5",
+                  pts: 3,
+                  hints: ["Ava sulud: 4x − 8 = 12", "4x = 20", "x = 5"],
+                  steps: ["4x − 8 = 12", "4x = 20", "x = 5"],
+                },
+                {
+                  id: "le5",
+                  type: "input",
+                  q: "x/3 + 2 = 5",
+                  ans: "9",
+                  pts: 2,
+                  hints: [
+                    "Lahuta mõlemalt 2: x/3 = 3",
+                    "Korruta 3-ga.",
+                    "x = 9",
+                  ],
+                  steps: ["x/3 = 3", "x = 9"],
+                },
+
+                {
+                  id: "le6",
+                  type: "input",
+                  q: "7x \u2212 3 = 18",
+                  ans: "3",
+                  pts: 2,
+                  hints: ["Lisa m\u00f5lemale poolele 3.", "7x = 21", "Jaga 7-ga."],
+                  steps: ["7x = 21", "x = 3"],
+                },
+                {
+                  id: "le7",
+                  type: "input",
+                  q: "(x + 4) / 2 = 6",
+                  ans: "8",
+                  pts: 2,
+                  hints: ["Korruta m\u00f5lemad pooled 2-ga.", "x + 4 = 12", "x = ?"],
+                  steps: ["x + 4 = 12", "x = 8"],
+                },
+                {
+                  id: "le8",
+                  type: "input",
+                  q: "3x + 2x = 30",
+                  ans: "6",
+                  pts: 2,
+                  hints: ["Kogu sarnased liikmed.", "5x = 30"],
+                  steps: ["5x = 30", "x = 6"],
+                },
+                {
+                  id: "le9",
+                  type: "multiple",
+                  q: "Lahenda: 4x \u2212 8 = 0",
+                  options: ["x = 2", "x = \u22122", "x = 4", "x = 8"],
+                  ans: "x = 2",
+                  pts: 2,
+                  hints: ["4x = 8", "Jaga 4-ga."],
+                  steps: ["4x = 8", "x = 2"],
+                },
+                {
+                  id: "le10",
+                  type: "input",
+                  q: "2(3x \u2212 1) = 10",
+                  ans: "2",
+                  pts: 3,
+                  hints: ["Ava sulud: 6x \u2212 2 = 10", "6x = 12"],
+                  steps: ["6x \u2212 2 = 10", "6x = 12", "x = 2"],
+                },
+                {
+                  id: "le11",
+                  type: "input",
+                  q: "9 \u2212 2x = 3",
+                  ans: "3",
+                  pts: 2,
+                  hints: ["9 \u2212 2x = 3", "\u22122x = \u22126", "Jaga \u22122-ga."],
+                  steps: ["\u22122x = \u22126", "x = 3"],
+                },
+                {
+                  id: "le12",
+                  type: "input",
+                  q: "x/4 \u2212 1 = 3",
+                  ans: "16",
+                  pts: 2,
+                  hints: ["Lisa m\u00f5lemale poolele 1.", "x/4 = 4", "Korruta 4-ga."],
+                  steps: ["x/4 = 4", "x = 16"],
+                },
+                {
+                  id: "le13",
+                  type: "multiple",
+                  q: "Milline v\u00e4\u00e4rtus rahuldab v\u00f5rrandit 5x + 1 = 3x + 9?",
+                  options: ["x = 4", "x = 5", "x = 2", "x = 8"],
+                  ans: "x = 4",
+                  pts: 3,
+                  hints: ["Kogu x-id vasakule: 2x = 8", "Jaga 2-ga."],
+                  steps: ["5x \u2212 3x = 9 \u2212 1", "2x = 8", "x = 4"],
+                },
+                {
+                  id: "le14",
+                  type: "input",
+                  q: "3(x + 4) \u2212 2x = 17",
+                  ans: "5",
+                  pts: 3,
+                  hints: ["Ava sulud: 3x + 12 \u2212 2x = 17", "x + 12 = 17"],
+                  steps: ["3x + 12 \u2212 2x = 17", "x = 5"],
+                },
+                {
+                  id: "le15",
+                  type: "input",
+                  q: "Lahenda: x + (x + 2) + (x + 4) = 18",
+                  ans: "4",
+                  pts: 3,
+                  hints: ["Kogu x-id: 3x + 6 = 18", "3x = 12"],
+                  steps: ["3x + 6 = 18", "3x = 12", "x = 4"],
+                },
+              ],
+            },
+            {
+              id: "percentages",
+              name: "Protsendid",
+              icon: "💯",
+              questions: [
+                {
+                  id: "p1",
+                  type: "input",
+                  q: "Kui suur on 20% arvust 150?",
+                  ans: "30",
+                  pts: 2,
+                  hints: ["20% = 20/100 = 0.2", "150 × 0.2 = ?"],
+                  steps: ["0.2 × 150 = 30"],
+                },
+                {
+                  id: "p2",
+                  type: "input",
+                  q: "Toode maksab 80€, hind tõusis 15%. Uus hind?",
+                  ans: "92",
+                  pts: 3,
+                  hints: ["15% × 80 = ?", "0.15 × 80 = 12€", "80 + 12 = ?"],
+                  steps: ["0.15 × 80 = 12", "80 + 12 = 92€"],
+                },
+                {
+                  id: "p3",
+                  type: "input",
+                  q: "Mitu protsenti on 45 arvust 180?",
+                  ans: "25",
+                  pts: 2,
+                  hints: ["45 ÷ 180 = ?", "= 0.25", "× 100 = 25%"],
+                  steps: ["45 ÷ 180 = 0.25", "0.25 × 100 = 25%"],
+                },
+                {
+                  id: "p4",
+                  type: "input",
+                  q: "Pärast 25% allahindlust maksab toode 60€. Algne hind?",
+                  ans: "80",
+                  pts: 3,
+                  hints: [
+                    "60€ = 75% algsest hinnast",
+                    "x × 0.75 = 60",
+                    "x = 60 ÷ 0.75",
+                  ],
+                  steps: ["0.75x = 60", "x = 80€"],
+                },
+                {
+                  id: "p5",
+                  type: "input",
+                  q: "3% intress aastas. Sul on 500€. Summa aasta pärast?",
+                  ans: "515",
+                  pts: 2,
+                  hints: ["3% × 500 = 15€", "500 + 15 = ?"],
+                  steps: ["0.03 × 500 = 15", "500 + 15 = 515€"],
+                },
+
+                {
+                  id: "p6",
+                  type: "input",
+                  q: "Mis on 35% arvust 80?",
+                  ans: "28",
+                  pts: 2,
+                  hints: ["35% = 0,35", "0,35 \u00d7 80 = ?"],
+                  steps: ["0,35 \u00d7 80 = 28"],
+                },
+                {
+                  id: "p7",
+                  type: "input",
+                  q: "Kaup maksis 200\u20ac, hind langes 15%. Uus hind?",
+                  ans: "170",
+                  pts: 3,
+                  hints: ["15% \u00d7 200 = 30\u20ac", "200 \u2212 30 = ?"],
+                  steps: ["0,15 \u00d7 200 = 30", "200 \u2212 30 = 170\u20ac"],
+                },
+                {
+                  id: "p8",
+                  type: "input",
+                  q: "\u00d5pilane sai testis 45 punkti 60-st. Mitu protsenti?",
+                  ans: "75",
+                  pts: 2,
+                  hints: ["45 \u00f7 60 = ?", "\u00d7 100 = ?%"],
+                  steps: ["45 \u00f7 60 = 0,75", "0,75 \u00d7 100 = 75%"],
+                },
+                {
+                  id: "p9",
+                  type: "input",
+                  q: "Pank maksab 4% lihtintressi aastas. 2000\u20ac eest 3 aastaga saadav intress?",
+                  ans: "240",
+                  pts: 3,
+                  hints: ["Intress = kapital \u00d7 protsent \u00d7 aeg", "2000 \u00d7 0,04 \u00d7 3 = ?"],
+                  steps: ["2000 \u00d7 0,04 = 80\u20ac aastas", "80 \u00d7 3 = 240\u20ac"],
+                },
+                {
+                  id: "p10",
+                  type: "multiple",
+                  q: "Palk t\u00f5usis 10%, siis langes 10%. L\u00f5pptulemus algpalgaga v\u00f5rreldes?",
+                  options: ["\u22121% (veidi v\u00e4hem)", "0% (sama)", "+1% (veidi rohkem)", "\u221210%"],
+                  ans: "\u22121% (veidi v\u00e4hem)",
+                  pts: 4,
+                  hints: ["Proovi n\u00e4itega: 100 \u00d7 1,10 = 110", "110 \u00d7 0,90 = ?"],
+                  steps: ["100 \u00d7 1,10 = 110", "110 \u00d7 0,90 = 99", "Tulemus: \u22121%"],
+                },
+                {
+                  id: "p11",
+                  type: "input",
+                  q: "Klassis on 24 poissi ja 16 t\u00fcdrukut. Mitu protsenti on poisse?",
+                  ans: "60",
+                  pts: 3,
+                  hints: ["Kokku: 24 + 16 = 40", "24 \u00f7 40 = ?", "\u00d7 100"],
+                  steps: ["Kokku: 40", "24 \u00f7 40 = 0,6", "0,6 \u00d7 100 = 60%"],
+                },
+                {
+                  id: "p12",
+                  type: "input",
+                  q: "Toode maksis 120\u20ac, n\u00fc\u00fcd maksab 96\u20ac. Mitu protsenti odavamaks l\u00e4ks?",
+                  ans: "20",
+                  pts: 3,
+                  hints: ["Vahe: 120 \u2212 96 = 24\u20ac", "24 \u00f7 120 \u00d7 100 = ?"],
+                  steps: ["Vahe: 24\u20ac", "24 \u00f7 120 = 0,2", "0,2 \u00d7 100 = 20%"],
+                },
+                {
+                  id: "p13",
+                  type: "input",
+                  q: "500 \u00f5pilasest on 45% t\u00fcdrukud. Mitu t\u00fcdrukut on?",
+                  ans: "225",
+                  pts: 2,
+                  hints: ["0,45 \u00d7 500 = ?"],
+                  steps: ["0,45 \u00d7 500 = 225"],
+                },
+                {
+                  id: "p14",
+                  type: "input",
+                  q: "30% arvust X on 18. Mis on X?",
+                  ans: "60",
+                  pts: 3,
+                  hints: ["0,30 \u00d7 X = 18", "X = 18 \u00f7 0,30"],
+                  steps: ["X = 18 \u00f7 0,3 = 60"],
+                },
+                {
+                  id: "p15",
+                  type: "multiple",
+                  q: "Liitintress: 1000\u20ac + 5% aastas 2 aastat. L\u00f5ppsumma?",
+                  options: ["1102,50\u20ac", "1100\u20ac", "1050\u20ac", "1200\u20ac"],
+                  ans: "1102,50\u20ac",
+                  pts: 4,
+                  hints: ["1. aasta: 1000 \u00d7 1,05 = 1050\u20ac", "2. aasta: 1050 \u00d7 1,05 = ?"],
+                  steps: ["1050 \u00d7 1,05 = 1102,50\u20ac"],
+                },
+              ],
+            },
+            {
+              id: "geometry",
+              name: "Geomeetria",
+              icon: "📏",
+              questions: [
+                {
+                  id: "g1",
+                  type: "input",
+                  q: "Ruudu külg = 6 cm. Arvuta pindala.",
+                  ans: "36",
+                  pts: 2,
+                  hints: ["P = a²", "a = 6"],
+                  steps: ["P = 6² = 36 cm²"],
+                },
+                {
+                  id: "g2",
+                  type: "input",
+                  q: "Ristkülik 8cm × 5cm. Arvuta ümbermõõt.",
+                  ans: "26",
+                  pts: 2,
+                  hints: ["ü = 2(a + b)", "2(8 + 5) = ?"],
+                  steps: ["ü = 2(8+5) = 2×13 = 26 cm"],
+                },
+                {
+                  id: "g3",
+                  type: "input",
+                  q: "Kolmnurga alus = 10 cm, kõrgus = 7 cm. Pindala?",
+                  ans: "35",
+                  pts: 3,
+                  hints: ["P = (a × h) / 2", "(10 × 7) / 2 = ?"],
+                  steps: ["P = 10×7/2 = 35 cm²"],
+                },
+                {
+                  id: "g4",
+                  type: "input",
+                  q: "Ringi raadius = 5 cm. Ümbermõõt? (π ≈ 3.14)",
+                  ans: "31.4",
+                  pts: 3,
+                  hints: ["ü = 2πr", "2 × 3.14 × 5 = ?"],
+                  steps: ["ü = 2 × 3.14 × 5 = 31.4 cm"],
+                },
+                {
+                  id: "g5",
+                  type: "input",
+                  q: "Täisnurkse △ kaatetid 3 ja 4. Hüpotenuus?",
+                  ans: "5",
+                  pts: 4,
+                  hints: ["c² = a² + b²", "c² = 9 + 16 = 25", "√25 = ?"],
+                  steps: ["c² = 3² + 4² = 25", "c = 5 cm"],
+                },
+
+                {
+                  id: "g6",
+                  type: "input",
+                  q: "Rombil on diagonaalid 6 cm ja 8 cm. Pindala?",
+                  ans: "24",
+                  pts: 3,
+                  hints: ["P = (d\u2081 \u00d7 d\u2082) / 2", "(6 \u00d7 8) / 2 = ?"],
+                  steps: ["P = (6 \u00d7 8) / 2 = 24 cm\u00b2"],
+                },
+                {
+                  id: "g7",
+                  type: "input",
+                  q: "Kolmnurga kaks nurka on 50\u00b0 ja 70\u00b0. Kolmas nurk?",
+                  ans: "60",
+                  pts: 2,
+                  hints: ["Nurkade summa = 180\u00b0", "180 \u2212 50 \u2212 70 = ?"],
+                  steps: ["180\u00b0 \u2212 50\u00b0 \u2212 70\u00b0 = 60\u00b0"],
+                },
+                {
+                  id: "g8",
+                  type: "input",
+                  q: "Ristküliku pindala on 48 cm\u00b2, pikkus on 8 cm. Laius?",
+                  ans: "6",
+                  pts: 2,
+                  hints: ["P = pikkus \u00d7 laius", "48 = 8 \u00d7 l", "l = 48 \u00f7 8"],
+                  steps: ["l = 48 \u00f7 8 = 6 cm"],
+                },
+                {
+                  id: "g9",
+                  type: "input",
+                  q: "Kuubi serv on 4 cm. Ruumala?",
+                  ans: "64",
+                  pts: 2,
+                  hints: ["V = a\u00b3", "4\u00b3 = ?"],
+                  steps: ["V = 4\u00b3 = 64 cm\u00b3"],
+                },
+                {
+                  id: "g10",
+                  type: "multiple",
+                  q: "T\u00e4isnurkse kolmnurga h\u00fcpotenuus on 13 cm ja \u00fcks kaatet 5 cm. Teine kaatet?",
+                  options: ["12 cm", "8 cm", "10 cm", "11 cm"],
+                  ans: "12 cm",
+                  pts: 3,
+                  hints: ["b\u00b2 = c\u00b2 \u2212 a\u00b2", "b\u00b2 = 169 \u2212 25 = 144", "\u221a144 = ?"],
+                  steps: ["b\u00b2 = 13\u00b2 \u2212 5\u00b2 = 169 \u2212 25 = 144", "b = 12 cm"],
+                },
+                {
+                  id: "g11",
+                  type: "input",
+                  q: "Trapetsi r\u00f6\u00f6bik\u00fcljed on 5 cm ja 9 cm, k\u00f5rgus 4 cm. Pindala?",
+                  ans: "28",
+                  pts: 3,
+                  hints: ["P = (a + b) / 2 \u00d7 h", "(5 + 9) / 2 \u00d7 4 = ?"],
+                  steps: ["P = 14/2 \u00d7 4 = 7 \u00d7 4 = 28 cm\u00b2"],
+                },
+                {
+                  id: "g12",
+                  type: "input",
+                  q: "Ringi pindala on 78,5 cm\u00b2. Raadius? (\u03c0 \u2248 3,14)",
+                  ans: "5",
+                  pts: 3,
+                  hints: ["P = \u03c0 \u00d7 r\u00b2", "r\u00b2 = 78,5 \u00f7 3,14 = 25", "r = \u221a25"],
+                  steps: ["r\u00b2 = 78,5 \u00f7 3,14 = 25", "r = 5 cm"],
+                },
+                {
+                  id: "g13",
+                  type: "input",
+                  q: "Risttahuka m\u00f5\u00f5tmed on 3 \u00d7 4 \u00d7 5 cm. Ruumala?",
+                  ans: "60",
+                  pts: 2,
+                  hints: ["V = pikkus \u00d7 laius \u00d7 k\u00f5rgus"],
+                  steps: ["V = 3 \u00d7 4 \u00d7 5 = 60 cm\u00b3"],
+                },
+                {
+                  id: "g14",
+                  type: "multiple",
+                  q: "Ruudu \u00fcmberm\u00f6\u00f6t on 28 cm. Pindala?",
+                  options: ["49 cm\u00b2", "56 cm\u00b2", "28 cm\u00b2", "196 cm\u00b2"],
+                  ans: "49 cm\u00b2",
+                  pts: 3,
+                  hints: ["K\u00fclg = \u00fcmberm\u00f6\u00f6t \u00f7 4 = 7 cm", "P = 7\u00b2 = ?"],
+                  steps: ["K\u00fclg = 28 \u00f7 4 = 7 cm", "P = 7\u00b2 = 49 cm\u00b2"],
+                },
+                {
+                  id: "g15",
+                  type: "input",
+                  q: "V\u00f5rdkülgse kolmnurga iga nurk kraadides?",
+                  ans: "60",
+                  pts: 2,
+                  hints: ["K\u00f5ik kolm nurka on v\u00f5rdsed.", "Nurkade summa = 180\u00b0", "180 \u00f7 3 = ?"],
+                  steps: ["180\u00b0 \u00f7 3 = 60\u00b0"],
+                },
+              ],
+            },
+            {
+              id: "functions",
+              name: "Funktsioonid",
+              icon: "📈",
+              questions: [
+                {
+                  id: "f1",
+                  type: "input",
+                  q: "f(x) = 2x + 3. Arvuta f(4).",
+                  ans: "11",
+                  pts: 2,
+                  hints: ["Asenda x = 4", "2×4 + 3 = ?"],
+                  steps: ["f(4) = 2×4 + 3 = 11"],
+                },
+                {
+                  id: "f2",
+                  type: "input",
+                  q: "f(x) = x² − 1. Arvuta f(−3).",
+                  ans: "8",
+                  pts: 2,
+                  hints: ["Asenda x = −3", "(−3)² = 9", "9 − 1 = ?"],
+                  steps: ["f(−3) = (−3)² − 1 = 9 − 1 = 8"],
+                },
+                {
+                  id: "f3",
+                  type: "multiple",
+                  q: "y = 3x − 2. Mis on tõus?",
+                  options: ["3", "−2", "2", "−3"],
+                  ans: "3",
+                  pts: 2,
+                  hints: ["y = kx + b", "k on tõus", "x ees olev arv"],
+                  steps: ["y = kx + b → k = 3"],
+                },
+                {
+                  id: "f4",
+                  type: "multiple",
+                  q: "f(x) = 4x + 8. Nullkoht (y=0)?",
+                  options: ["x = −2", "x = 2", "x = −8", "x = 4"],
+                  ans: "x = −2",
+                  pts: 3,
+                  hints: ["f(x) = 0 → 4x + 8 = 0", "4x = −8", "x = ?"],
+                  steps: ["4x + 8 = 0", "x = −2"],
+                },
+                {
+                  id: "f5",
+                  type: "multiple",
+                  q: "f(x) = x² − 4. Nullkohad?",
+                  options: [
+                    "x = 2 ja x = −2",
+                    "x = 4 ja x = −4",
+                    "x = 2",
+                    "x = 0",
+                  ],
+                  ans: "x = 2 ja x = −2",
+                  pts: 3,
+                  hints: ["x² − 4 = 0", "x² = 4", "√4 = ±2"],
+                  steps: ["x² = 4", "x = ±2"],
+                },
+
+                {
+                  id: "f6",
+                  type: "input",
+                  q: "f(x) = 3x \u2212 7. Arvuta f(5).",
+                  ans: "8",
+                  pts: 2,
+                  hints: ["Asenda x = 5", "3 \u00d7 5 \u2212 7 = ?"],
+                  steps: ["f(5) = 3 \u00d7 5 \u2212 7 = 15 \u2212 7 = 8"],
+                },
+                {
+                  id: "f7",
+                  type: "multiple",
+                  q: "y = 2x + 4. Kus l\u00f5ikab graafik y-telge?",
+                  options: ["(0, 4)", "(0, 2)", "(\u22122, 0)", "(4, 0)"],
+                  ans: "(0, 4)",
+                  pts: 2,
+                  hints: ["Y-teljel x = 0", "y = 2 \u00d7 0 + 4 = ?"],
+                  steps: ["x = 0 \u2192 y = 4", "Y-telje l\u00f5ikepunkt: (0, 4)"],
+                },
+                {
+                  id: "f8",
+                  type: "input",
+                  q: "f(x) = x\u00b2 + 2x. Arvuta f(3).",
+                  ans: "15",
+                  pts: 2,
+                  hints: ["Asenda x = 3", "9 + 6 = ?"],
+                  steps: ["f(3) = 3\u00b2 + 2 \u00d7 3 = 9 + 6 = 15"],
+                },
+                {
+                  id: "f9",
+                  type: "multiple",
+                  q: "Lineaarfunktsiooni y = \u22122x + 6 t\u00f5us on:",
+                  options: ["\u22122", "2", "6", "\u22126"],
+                  ans: "\u22122",
+                  pts: 2,
+                  hints: ["y = kx + b", "k on t\u00f5us, b on vabaliige"],
+                  steps: ["y = kx + b \u2192 k = \u22122 (x ees olev arv)"],
+                },
+                {
+                  id: "f10",
+                  type: "multiple",
+                  q: "Funktsioon f(x) = x\u00b2 \u2212 9 nullkohad on:",
+                  options: ["x = 3 ja x = \u22123", "x = 9 ja x = \u22129", "x = 3", "x = 0"],
+                  ans: "x = 3 ja x = \u22123",
+                  pts: 3,
+                  hints: ["x\u00b2 \u2212 9 = 0", "x\u00b2 = 9", "x = \u00b13"],
+                  steps: ["x\u00b2 = 9", "x = \u00b13"],
+                },
+                {
+                  id: "f11",
+                  type: "input",
+                  q: "f(x) = 2x\u00b2 \u2212 3x + 1. Arvuta f(2).",
+                  ans: "3",
+                  pts: 3,
+                  hints: ["Asenda x = 2", "2\u00d74 \u2212 3\u00d72 + 1 = ?"],
+                  steps: ["2\u00d74 \u2212 3\u00d72 + 1 = 8 \u2212 6 + 1 = 3"],
+                },
+                {
+                  id: "f12",
+                  type: "multiple",
+                  q: "Lineaarfunktsioon l\u00e4bib punkte (0, 3) ja (2, 7). Valem?",
+                  options: ["y = 2x + 3", "y = 3x + 2", "y = 2x \u2212 3", "y = x + 3"],
+                  ans: "y = 2x + 3",
+                  pts: 4,
+                  hints: ["T\u00f5us k = (7 \u2212 3) / (2 \u2212 0) = 2", "Punkt (0, 3) \u2192 b = 3"],
+                  steps: ["k = 4/2 = 2", "b = 3", "y = 2x + 3"],
+                },
+                {
+                  id: "f13",
+                  type: "multiple",
+                  q: "Kui f(x) = 5x \u2212 10, siis millal f(x) = 0?",
+                  options: ["x = 2", "x = 10", "x = \u22122", "x = 5"],
+                  ans: "x = 2",
+                  pts: 2,
+                  hints: ["5x \u2212 10 = 0", "5x = 10"],
+                  steps: ["5x = 10", "x = 2"],
+                },
+                {
+                  id: "f14",
+                  type: "multiple",
+                  q: "Ruutfunktsiooni y = x\u00b2 graafikul on punkt:",
+                  options: ["(3, 9)", "(3, 6)", "(2, 8)", "(4, 8)"],
+                  ans: "(3, 9)",
+                  pts: 2,
+                  hints: ["Asenda x = 3", "y = 3\u00b2 = 9"],
+                  steps: ["y = 3\u00b2 = 9 \u2192 punkt (3, 9)"],
+                },
+              ],
+            },
+            {
+              id: "text_problems",
+              name: "Tekstülesanded",
+              icon: "📝",
+              questions: [
+                {
+                  id: "tp1",
+                  type: "input",
+                  q: "Jaanil on 3× rohkem õunu kui Maril. Koos 48. Mitu on Maril?",
+                  ans: "12",
+                  pts: 4,
+                  hints: ["Mari = x, Jaan = 3x", "x + 3x = 48", "4x = 48"],
+                  steps: ["4x = 48", "x = 12"],
+                },
+                {
+                  id: "tp2",
+                  type: "input",
+                  q: "Auto sõidab 90 km/h. Kui kaua 270 km läbimiseks? (tundides)",
+                  ans: "3",
+                  pts: 2,
+                  hints: ["t = s ÷ v", "t = 270 ÷ 90"],
+                  steps: ["t = 270/90 = 3 h"],
+                },
+                {
+                  id: "tp3",
+                  type: "input",
+                  q: "Aias on 80 taime. 60% on roosid. Mitu roosi?",
+                  ans: "48",
+                  pts: 2,
+                  hints: ["60% × 80", "0.6 × 80 = ?"],
+                  steps: ["0.6 × 80 = 48"],
+                },
+                {
+                  id: "tp4",
+                  type: "input",
+                  q: "Toode kallines 20%, uus hind 120€. Algne hind?",
+                  ans: "100",
+                  pts: 3,
+                  hints: ["1.2 × x = 120", "x = 120 ÷ 1.2"],
+                  steps: ["1.2x = 120", "x = 100€"],
+                },
+                {
+                  id: "tp5",
+                  type: "input",
+                  q: "Pilet 12€. 3 piletit 15% allahindlusega. Summa?",
+                  ans: "30.6",
+                  pts: 4,
+                  hints: ["3 × 12 = 36€", "15% × 36 = 5.4€", "36 − 5.4 = ?"],
+                  steps: ["3×12=36", "0.15×36=5.4", "36−5.4=30.6€"],
+                },
+
+                {
+                  id: "tp6",
+                  type: "input",
+                  q: "Klassis on 30 \u00f5pilast. 40% on poisid. Mitu t\u00fcdrukut on klassis?",
+                  ans: "18",
+                  pts: 2,
+                  hints: ["Poisse: 0,40 \u00d7 30 = 12", "T\u00fcdrukuid = 30 \u2212 12"],
+                  steps: ["Poisse: 0,40 \u00d7 30 = 12", "T\u00fcdrukuid: 30 \u2212 12 = 18"],
+                },
+                {
+                  id: "tp7",
+                  type: "input",
+                  q: "Rongi kiirus on 120 km/h. Kui kaua s\u00f5idab 360 km? (tundides)",
+                  ans: "3",
+                  pts: 2,
+                  hints: ["t = s \u00f7 v", "t = 360 \u00f7 120"],
+                  steps: ["t = 360 \u00f7 120 = 3 tundi"],
+                },
+                {
+                  id: "tp8",
+                  type: "input",
+                  q: "Kolmnurga \u00fcmberm\u00f6\u00f6t on 36 cm. Kaks k\u00fclge on 12 cm ja 10 cm. Kolmas k\u00fclg?",
+                  ans: "14",
+                  pts: 2,
+                  hints: ["\u00fc = a + b + c", "36 = 12 + 10 + c"],
+                  steps: ["c = 36 \u2212 12 \u2212 10 = 14 cm"],
+                },
+                {
+                  id: "tp9",
+                  type: "input",
+                  q: "Kahe arvu summa on 56 ja \u00fcks arv on teisest 8 v\u00f5rra suurem. V\u00e4iksem arv?",
+                  ans: "24",
+                  pts: 3,
+                  hints: ["Olgu v\u00e4iksem arv x.", "x + (x + 8) = 56", "2x + 8 = 56"],
+                  steps: ["2x = 48", "x = 24"],
+                },
+                {
+                  id: "tp10",
+                  type: "input",
+                  q: "Bassein t\u00e4itub 4 tunniga ja t\u00fchjeneb 6 tunniga. M\u00f5lemad korraga \u2014 mitu tundi t\u00e4itumiseks?",
+                  ans: "12",
+                  pts: 5,
+                  hints: [
+                    "T\u00e4itmine: 1/4 tunnis",
+                    "T\u00fchjenamine: 1/6 tunnis",
+                    "Neto: 1/4 \u2212 1/6 = 3/12 \u2212 2/12 = 1/12",
+                  ],
+                  steps: ["1/4 \u2212 1/6 = 1/12 tunnis", "Kokku: 12 tundi"],
+                },
+                {
+                  id: "tp11",
+                  type: "input",
+                  q: "T\u00f6\u00f6taja teenib tunnis 8\u20ac. Ta t\u00f6\u00f6tas 6 tundi \u00fcletunni (1,5-kordne tasu). \u00dcletunni tulu?",
+                  ans: "72",
+                  pts: 3,
+                  hints: ["\u00dcletunni hind: 8 \u00d7 1,5 = 12\u20ac/h", "12 \u00d7 6 = ?"],
+                  steps: ["8 \u00d7 1,5 = 12\u20ac/h", "12 \u00d7 6 = 72\u20ac"],
+                },
+                {
+                  id: "tp12",
+                  type: "input",
+                  q: "Jalgpallimeeskond m\u00e4ngis 20 m\u00e4ngu. V\u00f5itis 60%, viigistas 15%. Mitu m\u00e4ngu kaotas?",
+                  ans: "5",
+                  pts: 3,
+                  hints: ["V\u00f5ite: 0,60 \u00d7 20 = 12", "Viike: 0,15 \u00d7 20 = 3", "Kaotusi: 20 \u2212 12 \u2212 3"],
+                  steps: ["V\u00f5ite: 12", "Viike: 3", "Kaotusi: 20 \u2212 12 \u2212 3 = 5"],
+                },
+                {
+                  id: "tp13",
+                  type: "input",
+                  q: "Nelinurga kolm nurka on 80\u00b0, 95\u00b0 ja 110\u00b0. Neljas nurk?",
+                  ans: "75",
+                  pts: 2,
+                  hints: ["Nelinurga nurkade summa = 360\u00b0", "360 \u2212 80 \u2212 95 \u2212 110 = ?"],
+                  steps: ["360\u00b0 \u2212 80\u00b0 \u2212 95\u00b0 \u2212 110\u00b0 = 75\u00b0"],
+                },
+              ],
+            },
+            {
+              id: "algebra",
+              name: "Algebra",
+              icon: "🔢",
+              questions: [
+                {
+                  id: "al1",
+                  type: "multiple",
+                  q: "Lihtsusta: 3a + 2b − a + 4b",
+                  options: ["2a + 6b", "4a + 6b", "2a + 2b", "3a + 6b"],
+                  ans: "2a + 6b",
+                  pts: 2,
+                  hints: [
+                    "Kogu sarnased liikmed.",
+                    "a: 3a − a = 2a",
+                    "b: 2b + 4b = 6b",
+                  ],
+                  steps: ["(3a−a)+(2b+4b) = 2a+6b"],
+                },
+                {
+                  id: "al2",
+                  type: "multiple",
+                  q: "Arvuta: (x + 3)²",
+                  options: [
+                    "x² + 6x + 9",
+                    "x² + 9",
+                    "x² + 3x + 9",
+                    "x² + 6x + 6",
+                  ],
+                  ans: "x² + 6x + 9",
+                  pts: 3,
+                  hints: ["(a+b)² = a² + 2ab + b²", "a=x, b=3", "x² + 6x + 9"],
+                  steps: ["(x+3)² = x² + 2·x·3 + 3² = x² + 6x + 9"],
+                },
+                {
+                  id: "al3",
+                  type: "multiple",
+                  q: "Lahenda: x² − 5x + 6 = 0",
+                  options: [
+                    "x = 2 ja x = 3",
+                    "x = −2 ja x = −3",
+                    "x = 1 ja x = 6",
+                    "x = 2 ja x = −3",
+                  ],
+                  ans: "x = 2 ja x = 3",
+                  pts: 4,
+                  hints: [
+                    "Otsi: korrutis=6, summa=5",
+                    "2×3=6, 2+3=5",
+                    "(x−2)(x−3)=0",
+                  ],
+                  steps: ["(x−2)(x−3)=0", "x=2 või x=3"],
+                },
+                {
+                  id: "al4",
+                  type: "multiple",
+                  q: "Lihtsusta: a² · a³",
+                  options: ["a⁵", "a⁶", "2a⁵", "a⁶"],
+                  ans: "a⁵",
+                  pts: 2,
+                  hints: ["aᵐ · aⁿ = aᵐ⁺ⁿ", "2+3=5"],
+                  steps: ["a² · a³ = a⁵"],
+                },
+                {
+                  id: "al5",
+                  type: "multiple",
+                  q: "Lahenda: x + y = 10 ja x − y = 4",
+                  options: ["x=7, y=3", "x=3, y=7", "x=6, y=4", "x=8, y=2"],
+                  ans: "x=7, y=3",
+                  pts: 5,
+                  hints: ["Liida võrrandid: 2x=14", "x=7", "7+y=10 → y=3"],
+                  steps: ["2x=14 → x=7", "y=10−7=3"],
+                },
+
+                {
+                  id: "al6",
+                  type: "multiple",
+                  q: "Lihtsusta: (x\u00b2y\u00b3) \u00f7 (xy\u00b2)",
+                  options: ["xy", "x\u00b2y", "xy\u00b2", "x/y"],
+                  ans: "xy",
+                  pts: 3,
+                  hints: ["x\u00b2 \u00f7 x = x", "y\u00b3 \u00f7 y\u00b2 = y"],
+                  steps: ["x\u00b2\u00f7x = x", "y\u00b3\u00f7y\u00b2 = y", "Tulemus: xy"],
+                },
+                {
+                  id: "al7",
+                  type: "input",
+                  q: "Arvuta (a \u2212 b)\u00b2, kui a = 5 ja b = 2.",
+                  ans: "9",
+                  pts: 2,
+                  hints: ["a \u2212 b = 5 \u2212 2 = 3", "3\u00b2 = ?"],
+                  steps: ["a \u2212 b = 3", "3\u00b2 = 9"],
+                },
+                {
+                  id: "al8",
+                  type: "multiple",
+                  q: "Lahenda: 2x\u00b2 \u2212 8 = 0",
+                  options: ["x = \u00b12", "x = 2", "x = 4", "x = \u00b14"],
+                  ans: "x = \u00b12",
+                  pts: 3,
+                  hints: ["2x\u00b2 = 8", "x\u00b2 = 4", "x = \u00b1\u221a4"],
+                  steps: ["2x\u00b2 = 8", "x\u00b2 = 4", "x = \u00b12"],
+                },
+                {
+                  id: "al9",
+                  type: "multiple",
+                  q: "Tegurda: a\u00b2 \u2212 b\u00b2",
+                  options: ["(a \u2212 b)(a + b)", "(a + b)\u00b2", "(a \u2212 b)\u00b2", "ei saa tegurdada"],
+                  ans: "(a \u2212 b)(a + b)",
+                  pts: 3,
+                  hints: ["Ruutude vahe valem", "a\u00b2 \u2212 b\u00b2 = (a + b)(a \u2212 b)"],
+                  steps: ["a\u00b2 \u2212 b\u00b2 = (a + b)(a \u2212 b)"],
+                },
+                {
+                  id: "al10",
+                  type: "input",
+                  q: "Arvuta: 2\u2074 \u2212 3\u00b2",
+                  ans: "7",
+                  pts: 2,
+                  hints: ["2\u2074 = 16", "3\u00b2 = 9"],
+                  steps: ["2\u2074 = 16", "3\u00b2 = 9", "16 \u2212 9 = 7"],
+                },
+                {
+                  id: "al11",
+                  type: "multiple",
+                  q: "Lihtsusta: (3x\u00b2) \u00d7 (2x\u00b3)",
+                  options: ["6x\u2075", "5x\u2075", "6x\u2076", "6x"],
+                  ans: "6x\u2075",
+                  pts: 3,
+                  hints: ["Korrutised: 3 \u00d7 2 = 6", "x\u00b2 \u00d7 x\u00b3 = x\u2075"],
+                  steps: ["3 \u00d7 2 = 6", "x\u00b2 \u00d7 x\u00b3 = x\u2075", "Tulemus: 6x\u2075"],
+                },
+                {
+                  id: "al12",
+                  type: "multiple",
+                  q: "Avaldis (x + 2)(x \u2212 2) on v\u00f5rdne:",
+                  options: ["x\u00b2 \u2212 4", "x\u00b2 + 4", "x\u00b2 \u2212 4x", "x\u00b2 + 2x \u2212 4"],
+                  ans: "x\u00b2 \u2212 4",
+                  pts: 3,
+                  hints: ["Ruutude vahe: (a+b)(a\u2212b) = a\u00b2\u2212b\u00b2", "a=x, b=2"],
+                  steps: ["(x+2)(x\u22122) = x\u00b2 \u2212 2\u00b2 = x\u00b2 \u2212 4"],
+                },
+                {
+                  id: "al13",
+                  type: "multiple",
+                  q: "Tegurda: 2x\u00b2 + 4x",
+                  options: ["2x(x + 2)", "2(x\u00b2 + 2x)", "x(2x + 4)", "2x\u00b2 + 4x"],
+                  ans: "2x(x + 2)",
+                  pts: 3,
+                  hints: ["\u00dchine tegur: 2x", "2x\u00b2 \u00f7 2x = x", "4x \u00f7 2x = 2"],
+                  steps: ["\u00dchine tegur on 2x", "2x\u00b2 + 4x = 2x(x + 2)"],
+                },
+                {
+                  id: "al14",
+                  type: "multiple",
+                  q: "Lahenda v\u00f5rrandis\u00fcsteem: 2x + y = 7 ja x \u2212 y = 2",
+                  options: ["x = 3, y = 1", "x = 2, y = 3", "x = 4, y = \u22121", "x = 1, y = 5"],
+                  ans: "x = 3, y = 1",
+                  pts: 5,
+                  hints: ["Liida m\u00f5lemad v\u00f5rrandid: 3x = 9", "x = 3", "y = 7 \u2212 2\u00d73 = 1"],
+                  steps: ["Liites: 3x = 9 \u2192 x = 3", "y = 7 \u2212 6 = 1"],
+                },
+              ],
+            },
+          ],
+        },
+        estonian: {
+          name: "Eesti keel",
+          icon: "📖",
+          color: "est",
+          topics: [
+            {
+              id: "spelling",
+              name: "Õigekiri",
+              icon: "✍️",
+              questions: [
+                {
+                  id: "sp1",
+                  type: "multiple",
+                  q: 'Vali õige: "ta ___ sügavalt"',
+                  options: ["mõtles", "mõteldes", "mõteldes", "mõtlema"],
+                  ans: "mõtles",
+                  pts: 2,
+                  hints: [
+                    '"ta + mida tegi?" → lihtminevik',
+                    "des-vorm ei saa olla öeldis.",
+                    "Kindel kõneviis: mõtles",
+                  ],
+                  steps: ['"Ta mõtles" – lihtminevik, kindel kõneviis'],
+                },
+                {
+                  id: "sp2",
+                  type: "multiple",
+                  q: 'Leia kirjaviga: "Raamat on laual. See on huvitav. ma lugesin seda."',
+                  options: [
+                    '"ma" peaks olema "Ma"',
+                    "Pole viga",
+                    '"huvitav" on vale',
+                    '"laual" on vale',
+                  ],
+                  ans: '"ma" peaks olema "Ma"',
+                  pts: 2,
+                  hints: [
+                    "Iga lause algab suure tähega.",
+                    "Vaata kolmandat lauset.",
+                  ],
+                  steps: ['Lause algab suure tähega → "Ma lugesin"'],
+                },
+                {
+                  id: "sp3",
+                  type: "multiple",
+                  q: 'Kuidas kirjutada: "ta ___ vastust"?',
+                  options: ["ei tea", "eitea", "Ei Tea", "ei-tea"],
+                  ans: "ei tea",
+                  pts: 2,
+                  hints: ['Eitussõna "ei" kirjutatakse lahku.'],
+                  steps: ['"ei" + "tea" = kaks sõna → "ei tea"'],
+                },
+                {
+                  id: "sp4",
+                  type: "multiple",
+                  q: "Õige kirjaviis:",
+                  options: [
+                    "esmaspäeval",
+                    "Esmaspäeval",
+                    "Esmaspäeval",
+                    "esmasPäeval",
+                  ],
+                  ans: "esmaspäeval",
+                  pts: 2,
+                  hints: [
+                    "Nädalapäevad kirjutatakse väikese tähega (kui pole lause alguses).",
+                  ],
+                  steps: ["esmaspäev = väike algustäht"],
+                },
+                {
+                  id: "sp5",
+                  type: "multiple",
+                  q: 'Mitu koma: "Kui ilm on ilus siis me läheme parki kus on palju inimesi"?',
+                  options: ["2 koma", "1 koma", "3 koma", "0 koma"],
+                  ans: "2 koma",
+                  pts: 3,
+                  hints: [
+                    "Kõrvallaused eraldatakse komaga.",
+                    'Koma 1: pärast "ilus"',
+                    'Koma 2: pärast "parki"',
+                  ],
+                  steps: [
+                    '"Kui ilm on ilus, siis me läheme parki, kus on palju inimesi."',
+                  ],
+                },
+                {
+                  id: "sp6",
+                  type: "multiple",
+                  q: '"suur maja" omastavas käändes:',
+                  options: [
+                    "suure maja",
+                    "suuri maja",
+                    "suur maja",
+                    "suure majat",
+                  ],
+                  ans: "suure maja",
+                  pts: 2,
+                  hints: ["Omastav: kelle? mille?", '"suur" → "suure"'],
+                  steps: ['"suur" → "suure"; "maja" → "maja"'],
+                },
+                {
+                  id: "sp7",
+                  type: "multiple",
+                  q: "Leia õige kirjaviis:",
+                  options: [
+                    "kaasaegne",
+                    "kaasa-aegne",
+                    "kaasa aegne",
+                    "Kaasaegne",
+                  ],
+                  ans: "kaasaegne",
+                  pts: 2,
+                  hints: ["Liitsõnad kirjutatakse kokku."],
+                  steps: ['"kaasaegne" on liitsõna – kirjutatakse kokku'],
+                },
+
+                {
+                  id: "sp8",
+                  type: "multiple",
+                  q: "Kumb kirjutis on \u00f5ige?",
+                  options: ["raamatukogu", "raamatu kogu", "raamatu-kogu", "Raamatukogu"],
+                  ans: "raamatukogu",
+                  pts: 2,
+                  hints: ["Liits\u00f5nad kirjutatakse kokku.", "raamat+u+kogu = raamatukogu"],
+                  steps: ["Liits\u00f5na raamatu+kogu \u2192 raamatukogu"],
+                },
+                {
+                  id: "sp9",
+                  type: "multiple",
+                  q: "Omaduss\u00f5na v\u00f5rdlusastmed: ilus \u2192 ilusam \u2192 kõige ilusam. Mis aste on \u201cilusam\u201d?",
+                  options: ["Keskvõrre", "Algv\u00f5rre", "\u00dcliv\u00f5rre", "Puudub selline aste"],
+                  ans: "Keskvõrre",
+                  pts: 2,
+                  hints: ["Algv\u00f5rre: ilus", "Keskvõrre: ilusam (\u2212m tunnus)", "\u00dcliv\u00f5rre: k\u00f5ige ilusam"],
+                  steps: ["ilus \u2192 ilusam (\u2212m) \u2192 k\u00f5ige ilusam", "ilusam = keskvõrre"],
+                },
+                {
+                  id: "sp10",
+                  type: "multiple",
+                  q: "Mis on \u00f5ige otsek\u00f5ne kirjaviis?",
+                  options: [
+                    "\u201cTule appi!\u201d h\u00fc\u00fcdis Jaan.",
+                    "\u201ctule appi!\u201d h\u00fc\u00fcdis Jaan.",
+                    "\u201cTule appi!\u201d H\u00fc\u00fcdis Jaan.",
+                    "Jaan h\u00fc\u00fcdis \u201ctule appi\u201d.",
+                  ],
+                  ans: "\u201cTule appi!\u201d h\u00fc\u00fcdis Jaan.",
+                  pts: 3,
+                  hints: [
+                    "Otsek\u00f5ne algab suure t\u00e4hega.",
+                    "Jutustaja s\u00f5nad algavad p\u00e4rast sulumärki v\u00e4iket\u00e4hega.",
+                  ],
+                  steps: ["Otsek\u00f5ne algab suure t\u00e4hega.", "Jutustusosa j\u00e4tkub v\u00e4iket\u00e4hega p\u00e4rast sulumärki."],
+                },
+                {
+                  id: "sp11",
+                  type: "multiple",
+                  q: "Vali lause, kus koma on \u00f5igesti pandud:",
+                  options: [
+                    "Kui sa tuled, siis toon sulle kingituse.",
+                    "Kui sa tuled siis toon sulle kingituse.",
+                    "Kui, sa tuled siis toon sulle kingituse.",
+                    "Kui sa, tuled siis toon sulle kingituse.",
+                  ],
+                  ans: "Kui sa tuled, siis toon sulle kingituse.",
+                  pts: 3,
+                  hints: ["Kõrvallause eraldatakse pealausest komaga.", "Kõrvallause algab sõnaga 'Kui'."],
+                  steps: ["'Kui sa tuled' = kõrvallause \u2192 koma pärast seda, enne 'siis'"],
+                },
+                {
+                  id: "sp12",
+                  type: "multiple",
+                  q: "Milline sõna on kirjutatud valesti?",
+                  options: ["täna õhtune", "tänaõhtune", "koolipäev", "raamatukogu"],
+                  ans: "täna õhtune",
+                  pts: 3,
+                  hints: ["täna + õhtune = liitsõna", "Liitsõnad kirjutatakse kokku."],
+                  steps: ["täna+õhtune = tänaõhtune \u2192 kirjutatakse kokku"],
+                },
+                {
+                  id: "sp13",
+                  type: "multiple",
+                  q: "Leia lause ilma kirjavigadeta:",
+                  options: [
+                    "Ta ei tulnud, sest oli haige.",
+                    "Ta ei tulnud sest oli haige.",
+                    "Ta Ei tulnud, sest oli haige.",
+                    "ta ei tulnud, sest oli haige.",
+                  ],
+                  ans: "Ta ei tulnud, sest oli haige.",
+                  pts: 2,
+                  hints: ["Lause algab suure tähega.", "Kõrvallause eraldatakse komaga."],
+                  steps: ["Suur algustäht + koma enne 'sest' \u2192 Ta ei tulnud, sest oli haige."],
+                },
+                {
+                  id: "sp14",
+                  type: "multiple",
+                  q: "Mis on omadussõna ülivõrre sõnast 'kiire'?",
+                  options: ["kõige kiirem", "kiirem", "kiireim", "kiire"],
+                  ans: "kõige kiirem",
+                  pts: 2,
+                  hints: ["Ülivõrre = kõige + keskvõrre", "kiire \u2192 kiirem \u2192 kõige kiirem"],
+                  steps: ["Ülivõrre moodustatakse: kõige + keskvõrre \u2192 kõige kiirem"],
+                },
+              ],
+            },
+            {
+              id: "grammar",
+              name: "Lauseõpetus",
+              icon: "🗣️",
+              questions: [
+                {
+                  id: "gr1",
+                  type: "multiple",
+                  q: 'Mis on ALUS? "Lapsed mängivad aias."',
+                  options: ["Lapsed", "mängivad", "aias", "Puudub"],
+                  ans: "Lapsed",
+                  pts: 2,
+                  hints: ["Alus: kes? mis?", '"Kes mängib?" → ?'],
+                  steps: ["Alus = Lapsed (nimetavas käändes)"],
+                },
+                {
+                  id: "gr2",
+                  type: "multiple",
+                  q: 'Mis on ÖELDIS? "Päike paistab täna kirkalt."',
+                  options: ["paistab", "Päike", "kirkalt", "täna"],
+                  ans: "paistab",
+                  pts: 2,
+                  hints: ["Öeldis: mida teeb?", '"Päike mida teeb?"'],
+                  steps: ["Öeldis = paistab (tegusõna)"],
+                },
+                {
+                  id: "gr3",
+                  type: "multiple",
+                  q: 'Mis laadi lause: "Kas sa tuled homme?"',
+                  options: ["Küsilause", "Jutustav", "Hüüdlause", "Käsklause"],
+                  ans: "Küsilause",
+                  pts: 2,
+                  hints: ['"Kas" algab küsilauseid.', "Lõpeb küsimärgiga."],
+                  steps: ['Küsilause: algab "Kas", lõpeb "?"'],
+                },
+                {
+                  id: "gr4",
+                  type: "multiple",
+                  q: 'Mis käändes on "koolis" lauses "Ma õpin koolis"?',
+                  options: ["Seesütlev", "Nimetav", "Omastav", "Osastav"],
+                  ans: "Seesütlev",
+                  pts: 2,
+                  hints: ["Seesütlev: kus? milles?", '"kooli-s" → tunnus -s'],
+                  steps: ["Seesütlev kääne, tunnus -s"],
+                },
+                {
+                  id: "gr5",
+                  type: "multiple",
+                  q: 'Mis kõneviisis: "Ta tuleks homme"?',
+                  options: [
+                    "Tingiv kõneviis",
+                    "Kindel kõneviis",
+                    "Käskiv kõneviis",
+                    "Kaudne kõneviis",
+                  ],
+                  ans: "Tingiv kõneviis",
+                  pts: 3,
+                  hints: ["Tingiv = soov/tingimus", "Tunnus: -ks"],
+                  steps: ['"tuleks" → -ks = tingiv kõneviis'],
+                },
+                {
+                  id: "gr6",
+                  type: "multiple",
+                  q: 'Mis ajavorm: "Nad olid mänginud"?',
+                  options: [
+                    "Enneminevik",
+                    "Olevik",
+                    "Lihtminevik",
+                    "Täisminevik",
+                  ],
+                  ans: "Enneminevik",
+                  pts: 3,
+                  hints: [
+                    "Enneminevik: olid + mineviku kesksõna",
+                    "Kaks osaga vorm",
+                  ],
+                  steps: ['"olid" + "mänginud" = enneminevik'],
+                },
+                {
+                  id: "gr7",
+                  type: "multiple",
+                  q: "Leia liitlause:",
+                  options: [
+                    "Lapsed mängivad ja naeravad.",
+                    "Päike paistab.",
+                    "Koer jookseb.",
+                    "Ta magab.",
+                  ],
+                  ans: "Lapsed mängivad ja naeravad.",
+                  pts: 3,
+                  hints: [
+                    "Liitlause: mitu öeldist",
+                    "Otsi sidesõna (ja, aga, ning...)",
+                  ],
+                  steps: ['"mängivad ja naeravad" – kaks öeldist = liitlause'],
+                },
+
+                {
+                  id: "gr8",
+                  type: "multiple",
+                  q: "Mis on TÄIEND lauses: 'Ilus lind laulab'?",
+                  options: ["Ilus", "lind", "laulab", "Puudub"],
+                  ans: "Ilus",
+                  pts: 2,
+                  hints: ["Täiend: milline? missugune?", "Milline lind? \u2192 Ilus"],
+                  steps: ["Täiend = Ilus (iseloomustab sõna 'lind')"],
+                },
+                {
+                  id: "gr9",
+                  type: "multiple",
+                  q: "Mis käändes on 'majja' lauses 'Ta läks majja'?",
+                  options: ["Sisseütlev", "Seesütlev", "Omastav", "Alaleütlev"],
+                  ans: "Sisseütlev",
+                  pts: 2,
+                  hints: ["Sisseütlev: kuhu? millesse?", "majja \u2192 kuhu? \u2192 maja+sse/ja"],
+                  steps: ["Küsimus: kuhu? \u2192 majja = sisseütlev kääne"],
+                },
+                {
+                  id: "gr10",
+                  type: "multiple",
+                  q: "Mis on MÄÄRUS lauses 'Laps mängib õues'?",
+                  options: ["õues", "Laps", "mängib", "Puudub"],
+                  ans: "õues",
+                  pts: 2,
+                  hints: ["Määrus: kus? millal? kuidas?", "Kus mängib? \u2192 õues"],
+                  steps: ["Määrus = õues (vastab küsimusele 'kus?')"],
+                },
+                {
+                  id: "gr11",
+                  type: "multiple",
+                  q: "Mis ajavorm on 'Ta loeb'?",
+                  options: ["Olevik", "Lihtminevik", "Täisminevik", "Tulevik"],
+                  ans: "Olevik",
+                  pts: 2,
+                  hints: ["Olevik = praegu toimuv tegevus"],
+                  steps: ["'loeb' = praegu toimub \u2192 olevik"],
+                },
+                {
+                  id: "gr12",
+                  type: "multiple",
+                  q: "Mis kõneviis on 'Tule siia!'?",
+                  options: ["Käskiv kõneviis", "Kindel kõneviis", "Tingiv kõneviis", "Kaudne kõneviis"],
+                  ans: "Käskiv kõneviis",
+                  pts: 2,
+                  hints: ["Käskiv kõneviis = käsk või palve", "'Tule!' \u2192 käsk kellelegi"],
+                  steps: ["'Tule!' = käsk (imperatiiv) \u2192 käskiv kõneviis"],
+                },
+                {
+                  id: "gr13",
+                  type: "multiple",
+                  q: "Mis käändes on 'lauale' lauses 'Pane raamat lauale'?",
+                  options: ["Alaleütlev", "Seesütlev", "Sisseütlev", "Alaltütlev"],
+                  ans: "Alaleütlev",
+                  pts: 2,
+                  hints: ["Alaleütlev: kuhu? millele?", "lauale \u2192 kuhu? \u2192 laua+le"],
+                  steps: ["Küsimus: kuhu? millele? \u2192 lauale = alaleütlev kääne"],
+                },
+                {
+                  id: "gr14",
+                  type: "multiple",
+                  q: "Mis käändes on 'majast' lauses 'Ta tuli majast'?",
+                  options: ["Seestütlev", "Sisseütlev", "Seesütlev", "Alaltütlev"],
+                  ans: "Seestütlev",
+                  pts: 2,
+                  hints: ["Seestütlev: kust? millest?", "majast \u2192 kust? \u2192 maja+st"],
+                  steps: ["Küsimus: kust? \u2192 majast = seestütlev kääne"],
+                },
+                {
+                  id: "gr15",
+                  type: "multiple",
+                  q: "Milline on lihtlause?",
+                  options: [
+                    "Koer jookseb aias.",
+                    "Koer jookseb ja kass magab.",
+                    "Kui koer jookseb, kass peitus.",
+                    "Koer, kes jookseb, on väsinud.",
+                  ],
+                  ans: "Koer jookseb aias.",
+                  pts: 3,
+                  hints: ["Lihtlauses on üks öeldis.", "'jookseb' \u2014 ainuke öeldis"],
+                  steps: ["Üks öeldis (jookseb) \u2192 lihtlause"],
+                },
+              ],
+            },
+            {
+              id: "essay",
+              name: "Kirjand",
+              icon: "📖",
+              questions: [
+                {
+                  id: "es1",
+                  type: "multiple",
+                  q: "Kirjandi sissejuhatuse põhiülesanne?",
+                  options: [
+                    "Tutvustada teemat, äratada huvi",
+                    "Esitada kõik argumendid",
+                    "Teha kokkuvõte",
+                    "Kirjeldada üksikasjalikult",
+                  ],
+                  ans: "Tutvustada teemat, äratada huvi",
+                  pts: 2,
+                  hints: [
+                    "Sissejuhatus = esimene osa",
+                    "Lugeja tahab edasi lugeda.",
+                  ],
+                  steps: [
+                    "Sissejuhatus: tutvustab teemat, ei anna kohe vastust",
+                  ],
+                },
+                {
+                  id: "es2",
+                  type: "multiple",
+                  q: "Mitu lõiku peaks arendus sisaldama?",
+                  options: [
+                    "2–4 lõiku",
+                    "1 lõik",
+                    "5–10 lõiku",
+                    "Täpselt 3 lõiku",
+                  ],
+                  ans: "2–4 lõiku",
+                  pts: 2,
+                  hints: ["Arendus = põhiosa", "Iga lõik = üks mõte"],
+                  steps: ["Tavaliselt 2–4 lõiku arenduses"],
+                },
+                {
+                  id: "es3",
+                  type: "multiple",
+                  q: "Hea lõigu struktuur?",
+                  options: [
+                    "Teemalause → argumendid → näide",
+                    "Näide → argument → kokkuvõte",
+                    "Küsimus → vastus",
+                    "Lihtsalt faktid",
+                  ],
+                  ans: "Teemalause → argumendid → näide",
+                  pts: 3,
+                  hints: [
+                    "Teemalause: millest räägid?",
+                    "Argumendid: miks nii on?",
+                    "Näide: tõestus",
+                  ],
+                  steps: ["1. Teemalause  2. Argumendid  3. Näide"],
+                },
+                {
+                  id: "es4",
+                  type: "multiple",
+                  q: "Mida kokkuvõte EI tohiks sisaldada?",
+                  options: [
+                    "Uusi argumente",
+                    "Peamõtte kordust",
+                    "Lõpetavat mõtet",
+                    "Autori seisukohta",
+                  ],
+                  ans: "Uusi argumente",
+                  pts: 2,
+                  hints: [
+                    "Kokkuvõte = viimane osa",
+                    "Kokkuvõttes ei alustata uusi teemasid.",
+                  ],
+                  steps: ["Kokkuvõte: korda peamõtet. EI: uued argumendid"],
+                },
+                {
+                  id: "es5",
+                  type: "multiple",
+                  q: 'Teema: "Nutitelefonid – abi või takistus?" Hea sissejuhatuse algus?',
+                  options: [
+                    "Kujutle päeva ilma nutitelefonita – kas see oleks raske?",
+                    "Nutitelefonid on halvad.",
+                    "Nutitelefonid leiutati 1990ndatel.",
+                    "Kokkuvõtteks: nutitelefonid on kasulikud.",
+                  ],
+                  ans: "Kujutle päeva ilma nutitelefonita – kas see oleks raske?",
+                  pts: 3,
+                  hints: [
+                    "Hea sissejuhatus tekitab küsimuse.",
+                    "Retoorilised küsimused tõmbavad tähelepanu.",
+                  ],
+                  steps: [
+                    "Retoorilised küsimused + isiklik lähenemine = hea alus",
+                  ],
+                },
+
+                {
+                  id: "es6",
+                  type: "multiple",
+                  q: "Mis on argumendi ülesanne kirjandis?",
+                  options: [
+                    "Põhjendada väidet ja veenda lugejat",
+                    "Tutvustada teemat",
+                    "Teha kokkuvõte",
+                    "Kirjeldada tegelasi",
+                  ],
+                  ans: "Põhjendada väidet ja veenda lugejat",
+                  pts: 2,
+                  hints: ["Argument = põhjendus", "Ta toetab sinu seisukohta."],
+                  steps: ["Argument põhjendab väidet ja aitab lugejat veenda."],
+                },
+                {
+                  id: "es7",
+                  type: "multiple",
+                  q: "Mis on retooriline küsimus?",
+                  options: [
+                    "Küsimus, millele vastust ei oodata",
+                    "Küsimus, millele on üks kindel vastus",
+                    "Küsimus teksti lõpus",
+                    "Küsimus ainult sissejuhatuses",
+                  ],
+                  ans: "Küsimus, millele vastust ei oodata",
+                  pts: 2,
+                  hints: ["Retooriline küsimus mõjutab lugejat, vastust ei nõuta."],
+                  steps: ["Retooriline küsimus äratab mõtlema, kuid ei nõua vastust."],
+                },
+                {
+                  id: "es8",
+                  type: "multiple",
+                  q: "Mitu põhiosa on klassikalisel kirjandi struktuuril?",
+                  options: ["3 (sissejuhatus, arendus, kokkuvõte)", "2", "4", "5"],
+                  ans: "3 (sissejuhatus, arendus, kokkuvõte)",
+                  pts: 2,
+                  hints: ["Algus + keskel + lõpp", "Iga osa täidab oma ülesande."],
+                  steps: ["1. Sissejuhatus  2. Arendus (põhiosa)  3. Kokkuvõte"],
+                },
+                {
+                  id: "es9",
+                  type: "multiple",
+                  q: "Miks on näited kirjandis olulised?",
+                  options: [
+                    "Need tõestavad argumendi ja muudavad teksti usaldusväärsemaks",
+                    "Need pikendavad kirjandit",
+                    "Need on kohustuslikud igas lõigus",
+                    "Need asendavad argumendi",
+                  ],
+                  ans: "Need tõestavad argumendi ja muudavad teksti usaldusväärsemaks",
+                  pts: 3,
+                  hints: ["Näide = tõestus", "Ilma näiteta jääb argument põhjendamata."],
+                  steps: ["Näide kinnitab argumenti ja annab lugejale konkreetse tõestuse."],
+                },
+                {
+                  id: "es10",
+                  type: "multiple",
+                  q: "Milline lausealgus väljendab põhjust?",
+                  options: ["Kuna\u2026", "Hoolimata sellest\u2026", "Sellest tulenevalt\u2026", "Seevastu\u2026"],
+                  ans: "Kuna\u2026",
+                  pts: 2,
+                  hints: ["'Kuna' = põhjus, sarnaselt 'sest'-iga"],
+                  steps: ["'Kuna' väljendab põhjust: 'Kuna ilm oli halb, jäin koju.'"],
+                },
+                {
+                  id: "es11",
+                  type: "multiple",
+                  q: "Mis vahe on arutluskirjandil ja jutustuskirjandil?",
+                  options: [
+                    "Arutluskirjand esitab seisukohti ja argumente, jutustus räägib loo",
+                    "Arutluskirjand on pikem",
+                    "Jutustuskirjand on ilma sissejuhatuseta",
+                    "Neil pole vahet",
+                  ],
+                  ans: "Arutluskirjand esitab seisukohti ja argumente, jutustus räägib loo",
+                  pts: 2,
+                  hints: ["Arutlus = arvamus + argumendid", "Jutustus = sündmused + tegelased"],
+                  steps: ["Arutluskirjand = autor võtab seisukoha ja põhjendab seda."],
+                },
+                {
+                  id: "es12",
+                  type: "multiple",
+                  q: "Mis on vastuargumendi funktsioon kirjandis?",
+                  options: [
+                    "Vastupidine seisukoht, millele autor seejärel vastab",
+                    "Autori peamine argument",
+                    "Kokkuvõttev lause",
+                    "Näide argumendi juures",
+                  ],
+                  ans: "Vastupidine seisukoht, millele autor seejärel vastab",
+                  pts: 3,
+                  hints: ["Vastuargument tugevdab kirjandit.", "Autor toob vastupidise arvamuse ja lükkab selle ümber."],
+                  steps: ["Vastuargument: tuuakse vastupidine seisukoht \u2192 lükatakse ümber \u2192 kirjand on veenvam"],
+                },
+              ],
+            },
+            {
+              id: "reading",
+              name: "Teksti mõistmine",
+              icon: "📚",
+              questions: [
+                {
+                  id: "rd1",
+                  type: "multiple",
+                  q: '"Jüri jooksis kooli, sest ta oli hilinenud." Miks jooksis Jüri?',
+                  options: [
+                    "Ta oli hilinenud",
+                    "Ta armastas jooksmist",
+                    "Ilm oli ilus",
+                    "Sõber kutsus",
+                  ],
+                  ans: "Ta oli hilinenud",
+                  pts: 2,
+                  hints: ['"sest" = põhjus'],
+                  steps: ['Põhjus: "sest ta oli hilinenud"'],
+                },
+                {
+                  id: "rd2",
+                  type: "multiple",
+                  q: '"Kuigi väljas sadas, läks Mari jalutama." Mis iseloomustab Marit?',
+                  options: [
+                    "Ta on visa ja otsusekindel",
+                    "Ta ei vaata ilmateadet",
+                    "Ta on laisk",
+                    "Ta on rõõmsameelne",
+                  ],
+                  ans: "Ta on visa ja otsusekindel",
+                  pts: 3,
+                  hints: [
+                    '"Kuigi" = vaatamata sellele',
+                    "Läks välja hoolimata vihmast",
+                  ],
+                  steps: ['"Kuigi" → vastuolu → otsusekindlus'],
+                },
+                {
+                  id: "rd3",
+                  type: "multiple",
+                  q: '"Koduõpe sobib mõnele. Teistele on koolis käimine olulisem." Põhimõte?',
+                  options: [
+                    "Eri inimestele sobivad eri õppeviisid",
+                    "Koduõpe on parem",
+                    "Koolis käimine on vajalik",
+                    "Mõlemad on võrdselt head",
+                  ],
+                  ans: "Eri inimestele sobivad eri õppeviisid",
+                  pts: 3,
+                  hints: ['"Mõnele... Teistele..." – kaks gruppi'],
+                  steps: ["Tekst ei eelista kumbagi → individuaalsus"],
+                },
+                {
+                  id: "rd4",
+                  type: "multiple",
+                  q: 'Mis on "implitsiitne tähendus"?',
+                  options: [
+                    "Varjatud, ridade vahelt loetav tähendus",
+                    "Otse öeldud tähendus",
+                    "Vale tähendus",
+                    "Sõnaraamatulik tähendus",
+                  ],
+                  ans: "Varjatud, ridade vahelt loetav tähendus",
+                  pts: 2,
+                  hints: [
+                    "Vastand: eksplitsiitne = otsesõnu",
+                    'Implitsiitne = "ridade vahelt"',
+                  ],
+                  steps: ["Implitsiitne = mõista antud, mitte otse öeldud"],
+                },
+                {
+                  id: "rd5",
+                  type: "multiple",
+                  q: '"Tuul ulub. Lehed langevad." Mis kirjanduslik võte?',
+                  options: [
+                    "Personifikatsioon",
+                    "Võrdlus",
+                    "Metafoor",
+                    "Hüperbool",
+                  ],
+                  ans: "Personifikatsioon",
+                  pts: 3,
+                  hints: [
+                    "Tuul ei ulugi tegelikult.",
+                    "Elutule asjale omistatakse inimlik omadus.",
+                  ],
+                  steps: [
+                    "Elutuna asjale inimlikud omadused = personifikatsioon",
+                  ],
+                },
+
+                {
+                  id: "rd6",
+                  type: "multiple",
+                  q: "\"Ta naeris, kuigi pisarad voolasid.\" Mis kirjanduslik võte?",
+                  options: ["Oksüümoron (vastandite ühendamine)", "Metafoor", "Võrdlus", "Hüperbool"],
+                  ans: "Oksüümoron (vastandite ühendamine)",
+                  pts: 3,
+                  hints: ["Naermine ja pisarad on vastandlikud.", "Vastandite ühendamine = oksüümoron."],
+                  steps: ["Naer + pisarad = vastandid ühes lauses \u2192 oksüümoron"],
+                },
+                {
+                  id: "rd7",
+                  type: "multiple",
+                  q: "\"Ta jooksis nii kiiresti kui tuul.\" Mis kirjanduslik võte?",
+                  options: ["Võrdlus", "Metafoor", "Personifikatsioon", "Hüperbool"],
+                  ans: "Võrdlus",
+                  pts: 2,
+                  hints: ["Sõna 'kui' märgib võrdlust.", "Kahte asja võrreldakse otseselt."],
+                  steps: ["'kui tuul' \u2192 otsene võrdlus sõnaga 'kui' \u2192 võrdlus"],
+                },
+                {
+                  id: "rd8",
+                  type: "multiple",
+                  q: "\"Ta on meie pere päike.\" Mis kirjanduslik võte?",
+                  options: ["Metafoor", "Võrdlus", "Personifikatsioon", "Oksüümoron"],
+                  ans: "Metafoor",
+                  pts: 2,
+                  hints: ["Metafoor: kujundlik samastamine ilma sõnata 'nagu'.", "'on päike' \u2014 ei öelda 'nagu päike'"],
+                  steps: ["'on päike' = otsene kujundlik samastamine \u2192 metafoor"],
+                },
+                {
+                  id: "rd9",
+                  type: "multiple",
+                  q: "\"Olen seda tuhat korda öelnud!\" Mis kirjanduslik võte?",
+                  options: ["Hüperbool", "Metafoor", "Võrdlus", "Personifikatsioon"],
+                  ans: "Hüperbool",
+                  pts: 2,
+                  hints: ["Hüperbool = teadlik liialdamine", "'Tuhat korda' pole tegelikult tõsi."],
+                  steps: ["Liialdamine mõju saavutamiseks \u2192 hüperbool"],
+                },
+                {
+                  id: "rd10",
+                  type: "multiple",
+                  q: "\"Linn ei maganud kunagi.\" Mis kirjanduslik võte?",
+                  options: ["Personifikatsioon", "Hüperbool", "Metafoor", "Võrdlus"],
+                  ans: "Personifikatsioon",
+                  pts: 2,
+                  hints: ["Linn ei saa magada.", "Elutule asjale antakse inimlikud omadused."],
+                  steps: ["Linn (elutu) + magamine (inimlik) \u2192 personifikatsioon"],
+                },
+                {
+                  id: "rd11",
+                  type: "multiple",
+                  q: "\"Teadmised on jõud.\" Mis kirjanduslik võte?",
+                  options: ["Metafoor", "Võrdlus", "Hüperbool", "Personifikatsioon"],
+                  ans: "Metafoor",
+                  pts: 2,
+                  hints: ["Teadmisi samastatakse jõuga.", "Ei kasutata sõna 'nagu'."],
+                  steps: ["Otsene kujundlik samastamine ilma sõnata 'nagu' \u2192 metafoor"],
+                },
+                {
+                  id: "rd12",
+                  type: "multiple",
+                  q: "\"Jüri oli alati esimene kohal, kuid täna istus ta viimases pingis.\" Mis võte?",
+                  options: ["Vastandus (antitees)", "Võrdlus", "Hüperbool", "Metafoor"],
+                  ans: "Vastandus (antitees)",
+                  pts: 3,
+                  hints: ["esimene \u2194 viimane = vastandid", "Kahe vastandliku asja kõrvutamine = antitees"],
+                  steps: ["esimene vs. viimane \u2192 teadlik vastandamine \u2192 antitees"],
+                },
+              ],
+            },
+          ],
+        },
+      };
+
+      // ═══════════════════════════════════════════
+      // STATE
+      // ═══════════════════════════════════════════
+      let state = {
+        currentSubject: null,
+        currentTopic: null,
+        currentQIdx: 0,
+        currentHintIdx: 0,
+        sessionScore: 0,
+        sessionAnswered: 0,
+        answered: false,
+        examActive: false,
+        examQuestions: [],
+        examQIdx: 0,
+        examScore: 0,
+        examCorrect: 0,
+        examTimer: null,
+        examTimeLeft: 1800,
+        examHintPenalty: 0,
+      };
+
+      let progress = JSON.parse(localStorage.getItem("examprep_v2") || "{}");
+      // progress = { completedTopics: [], scores: {topicId: score}, totalPoints: 0, questionsAnswered: 0 }
+      if (!progress.completedTopics) progress.completedTopics = [];
+      if (!progress.scores) progress.scores = {};
+      if (!progress.totalPoints) progress.totalPoints = 0;
+      if (!progress.questionsAnswered) progress.questionsAnswered = 0;
+      if (!progress.examHistory) progress.examHistory = [];
+
+      function saveProgress() {
+        localStorage.setItem("examprep_v2", JSON.stringify(progress));
+      }
+
+
+      let currentDiff = 'medium';
+      let sessionQs   = [];
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function setDiff(d) {
+        currentDiff = d;
+        ['easy','medium','hard'].forEach(function(k) {
+          const btn = document.getElementById('diff-' + k);
+          if (btn) btn.classList.remove('sel-easy','sel-medium','sel-hard');
+        });
+        const active = document.getElementById('diff-' + d);
+        if (active) active.classList.add('sel-' + d);
+      }
+
+      function buildSessionQs(questions) {
+        let pool;
+        if (currentDiff === 'easy') pool = questions.filter(function(q){ return q.pts <= 2; });
+        else if (currentDiff === 'hard') pool = questions.filter(function(q){ return q.pts >= 3; });
+        else pool = questions.slice();
+        if (pool.length < 2) pool = questions.slice();
+        return shuffle(pool);
+      }
+
+      // ═══════════════════════════════════════════
+      // THEME
+      // ═══════════════════════════════════════════
+      const savedTheme = localStorage.getItem("theme") || "light";
+      if (savedTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+        document.getElementById("themeBtn").textContent = "☀️ Hele";
+      }
+      function toggleTheme() {
+        const isDark =
+          document.documentElement.getAttribute("data-theme") === "dark";
+        document.documentElement.setAttribute(
+          "data-theme",
+          isDark ? "light" : "dark",
+        );
+        document.getElementById("themeBtn").textContent = isDark
+          ? "🌙 Tume"
+          : "☀️ Hele";
+        localStorage.setItem("theme", isDark ? "light" : "dark");
+      }
+
+      // ═══════════════════════════════════════════
+      // NAVIGATION
+      // ═══════════════════════════════════════════
+      function showPage(id) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById("page-" + id).classList.add("active");
+        document
+          .querySelectorAll(".nav-tab")
+          .forEach((t) => t.classList.remove("active"));
+        const tab = document.getElementById("tab-" + id);
+        if (tab) tab.classList.add("active");
+        if (id === "home") updateHome();
+        if (id === "exam") updateExamPage();
+        window.scrollTo(0, 0);
+      }
+
+      function showSubject(subj) {
+        state.currentSubject = subj;
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById("page-topics").classList.add("active");
+        document
+          .querySelectorAll(".nav-tab")
+          .forEach((t) => t.classList.remove("active"));
+        const tab = document.getElementById("tab-" + subj);
+        if (tab) tab.classList.add("active");
+        renderTopics(subj);
+        window.scrollTo(0, 0);
+      }
+
+      // ═══════════════════════════════════════════
+      // HOME
+      // ═══════════════════════════════════════════
+      function updateHome() {
+        document.getElementById("stat-questions").textContent =
+          progress.questionsAnswered;
+        document.getElementById("stat-points").textContent =
+          progress.totalPoints;
+        document.getElementById("stat-topics").textContent =
+          progress.completedTopics.length;
+
+        ["math", "estonian"].forEach((subj) => {
+          const d = DATA[subj];
+          const total = d.topics.length;
+          const done = d.topics.filter((t) =>
+            progress.completedTopics.includes(t.id),
+          ).length;
+          const pct = Math.round((done / total) * 100);
+          const pts = d.topics.reduce(
+            (s, t) => s + (progress.scores[t.id] || 0),
+            0,
+          );
+          const key = subj === "math" ? "math" : "est";
+          document.getElementById(key + "-bar").style.width = pct + "%";
+          document.getElementById(key + "-pct").textContent = pct + "%";
+          document.getElementById(key + "-done").textContent =
+            done + " / " + total + " teemat";
+          document.getElementById(key + "-score").textContent = pts + "p";
+        });
+      }
+
+      // ═══════════════════════════════════════════
+      // TOPICS
+      // ═══════════════════════════════════════════
+      function renderTopics(subj) {
+        const d = DATA[subj];
+        document.getElementById("topics-title").textContent = d.name;
+        const grid = document.getElementById("topics-grid");
+        grid.innerHTML = d.topics
+          .map((t) => {
+            const done = progress.completedTopics.includes(t.id);
+            const score = progress.scores[t.id] || 0;
+            const maxPts = sessionQs.reduce((s, q) => s + q.pts, 0);
+            return `<div class="topic-card" onclick="startTopic('${subj}','${t.id}')">
+      <div class="topic-left">
+        <div class="topic-icon-wrap">${t.icon}</div>
+        <div>
+          <div class="topic-name">${t.name}</div>
+          <div class="topic-meta">${t.questions.length} küsimust · max ${maxPts} punkti</div>
+        </div>
+      </div>
+      <div class="topic-right">
+        ${done ? `<span class="topic-badge done">✓ ${score}p</span>` : `<span class="topic-badge">${score > 0 ? score + "p" : "Alusta"}</span>`}
+        <span class="chevron">›</span>
+      </div>
+    </div>`;
+          })
+          .join("");
+      }
+
+      // ═══════════════════════════════════════════
+      // QUIZ
+      // ═══════════════════════════════════════════
+      function startTopic(subj, topicId) {
+        state.currentSubject = subj;
+        state.currentTopic = DATA[subj].topics.find((t) => t.id === topicId);
+        state.currentQIdx = 0;
+        state.sessionScore = 0;
+        state.sessionAnswered = 0;
+        sessionQs = buildSessionQs(state.currentTopic.questions);
+
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById("page-quiz").classList.add("active");
+
+        const d = DATA[subj];
+        document.getElementById("quiz-title").textContent =
+          state.currentTopic.name;
+        document.getElementById("quiz-subject-tag").innerHTML =
+          `<span class="tag ${d.color}">${d.icon} ${d.name}</span>`;
+        document.getElementById("quiz-back-btn").onclick = () =>
+          showSubject(subj);
+
+        renderQuestion();
+        window.scrollTo(0, 0);
+      }
+
+      function renderQuestion() {
+        const q = sessionQs[state.currentQIdx];
+        const total = sessionQs.length;
+        state.answered = false;
+        state.currentHintIdx = 0;
+
+        document.getElementById("q-topic-label").textContent =
+          state.currentTopic.name;
+        document.getElementById("q-progress-text").textContent =
+          state.currentQIdx + 1 + " / " + total;
+        document.getElementById("q-progress-fill").style.width =
+          (state.currentQIdx / total) * 100 + "%";
+
+        let html = `<div class="question-card">
+    <div class="question-points">⭐ ${q.pts} punkt${q.pts > 1 ? "i" : ""}</div>
+    <div class="question-text">${q.q}</div>`;
+
+        if (q.type === "multiple") {
+          html +=
+            `<div class="options-grid">` +
+            q.options
+              .map(
+                (o, i) =>
+                  `<button class="option-btn" id="opt-${i}" onclick="checkMultiple('${escQ(o)}','${escQ(q.ans)}',${q.pts},${i})">${o}</button>`,
+              )
+              .join("") +
+            `</div>`;
+        } else {
+          html += `<div class="input-wrap">
+      <input class="answer-input" id="ans-input" type="text" placeholder="Kirjuta vastus..."
+        onkeydown="if(event.key==='Enter')checkInput('${escQ(q.ans)}',${q.pts})">
+      <button class="submit-btn" onclick="checkInput('${escQ(q.ans)}',${q.pts})">→</button>
+    </div>`;
+        }
+
+        html += `</div>
+  <div class="hint-section">
+    <button class="hint-btn" id="hint-btn" onclick="showNextHint()">💡 Näita vihjet <span style="font-size:11px;opacity:0.7">(−0.5p)</span></button>
+    <div id="hint-display"></div>
+  </div>
+  <div id="feedback-area"></div>
+  <div class="quiz-actions hidden" id="next-actions">
+    <button class="next-btn" onclick="nextQuestion()">${state.currentQIdx < total - 1 ? "Järgmine küsimus →" : "🏁 Lõpeta teema"}</button>
+  </div>`;
+
+        document.getElementById("quiz-content").innerHTML = html;
+
+        if (q.type === "input") {
+          setTimeout(() => {
+            const inp = document.getElementById("ans-input");
+            if (inp) inp.focus();
+          }, 100);
+        }
+      }
+
+      function escQ(s) {
+        return s.replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+      }
+
+      function checkMultiple(chosen, correct, pts, idx) {
+        if (state.answered) return;
+        state.answered = true;
+
+        const penalty = state.currentHintIdx * 0.5;
+        const earned = chosen === correct ? Math.max(0, pts - penalty) : 0;
+        state.sessionScore += earned;
+        state.sessionAnswered++;
+        progress.questionsAnswered++;
+        if (earned > 0) progress.totalPoints += Math.round(earned);
+        saveProgress();
+
+        document.querySelectorAll(".option-btn").forEach((btn, i) => {
+          btn.disabled = true;
+          if (btn.textContent === correct) btn.classList.add("correct");
+          else if (i === idx && chosen !== correct) btn.classList.add("wrong");
+        });
+
+        showFeedback(
+          chosen === correct,
+          earned,
+          pts,
+          sessionQs[state.currentQIdx],
+        );
+        document.getElementById("next-actions").classList.remove("hidden");
+        document.getElementById("hint-btn").disabled = true;
+      }
+
+      function checkInput(correct, pts) {
+        if (state.answered) return;
+        const inp = document.getElementById("ans-input");
+        const val = inp.value.trim().replace(",", ".");
+        const correctClean = correct.toString().replace(",", ".");
+        const isCorrect =
+          parseFloat(val) === parseFloat(correctClean) ||
+          val.toLowerCase() === correctClean.toLowerCase();
+
+        state.answered = true;
+        const penalty = state.currentHintIdx * 0.5;
+        const earned = isCorrect ? Math.max(0, pts - penalty) : 0;
+        state.sessionScore += earned;
+        state.sessionAnswered++;
+        progress.questionsAnswered++;
+        if (earned > 0) progress.totalPoints += Math.round(earned);
+        saveProgress();
+
+        inp.classList.add(isCorrect ? "correct" : "wrong");
+        inp.disabled = true;
+        document.querySelector(".submit-btn").disabled = true;
+
+        showFeedback(
+          isCorrect,
+          earned,
+          pts,
+          sessionQs[state.currentQIdx],
+        );
+        document.getElementById("next-actions").classList.remove("hidden");
+        document.getElementById("hint-btn").disabled = true;
+      }
+
+      function showFeedback(correct, earned, maxPts, q) {
+        const fb = document.getElementById("feedback-area");
+        const penalty = state.currentHintIdx * 0.5;
+        let html = `<div class="feedback-card ${correct ? "correct" : "wrong"}">
+    <div class="feedback-title">${correct ? "✅ Õige!" : "❌ Vale"}
+      <span style="margin-left:auto;font-size:14px">+${earned.toFixed(earned % 1 ? 1 : 0)}/${maxPts}p</span>
+    </div>`;
+        if (!correct)
+          html += `<div style="font-size:14px;margin-bottom:8px">Õige vastus: <strong>${q.ans}</strong></div>`;
+        if (penalty > 0)
+          html += `<div style="font-size:12px;color:var(--text3);margin-bottom:8px">Vihjete karistus: −${penalty}p</div>`;
+        html +=
+          `<div class="solution-steps"><p>📋 Lahenduskäik:</p><div class="steps-list">` +
+          q.steps.map((s) => `<div class="step">${s}</div>`).join("") +
+          `</div></div></div>`;
+        fb.innerHTML = html;
+      }
+
+      function showNextHint() {
+        const q = sessionQs[state.currentQIdx];
+        if (state.currentHintIdx >= q.hints.length) return;
+        const hint = q.hints[state.currentHintIdx];
+        state.currentHintIdx++;
+        const display = document.getElementById("hint-display");
+        display.innerHTML = `<div class="hint-box">
+    <div class="hint-header">
+      <span>💡 Vihje ${state.currentHintIdx} / ${q.hints.length}</span>
+      <span class="hint-cost">−${(state.currentHintIdx * 0.5).toFixed(1)} punkti</span>
+    </div>
+    ${hint}
+  </div>`;
+        if (state.currentHintIdx >= q.hints.length) {
+          document.getElementById("hint-btn").textContent =
+            "💡 Rohkem vihjeid pole";
+          document.getElementById("hint-btn").disabled = true;
+        }
+      }
+
+      function nextQuestion() {
+        const total = sessionQs.length;
+        if (state.currentQIdx < total - 1) {
+          state.currentQIdx++;
+          renderQuestion();
+          window.scrollTo(0, 0);
+        } else {
+          finishTopic();
+        }
+      }
+
+      function finishTopic() {
+        const t = state.currentTopic;
+        const maxPts = t.questions.reduce((s, q) => s + q.pts, 0);
+        const pct = Math.round((state.sessionScore / maxPts) * 100);
+
+        if (!progress.completedTopics.includes(t.id)) {
+          progress.completedTopics.push(t.id);
+        }
+        if (
+          !progress.scores[t.id] ||
+          progress.scores[t.id] < Math.round(state.sessionScore)
+        ) {
+          progress.scores[t.id] = Math.round(state.sessionScore);
+        }
+        saveProgress();
+
+        const emoji = pct >= 80 ? "🎉" : pct >= 60 ? "👍" : "💪";
+        const msg =
+          pct >= 80
+            ? "Suurepärane tulemus!"
+            : pct >= 60
+              ? "Hea töö! Korda natuke."
+              : "Harjuta veel — sa saad hakkama!";
+
+        document.getElementById("quiz-content").innerHTML = `
+    <div class="topic-complete">
+      <div class="complete-emoji">${emoji}</div>
+      <div class="complete-title">${t.name} — lõpetatud!</div>
+      <div class="complete-sub">${msg}</div>
+      <div class="score-display">
+        <div class="score-big">${Math.round(state.sessionScore)} / ${maxPts}</div>
+        <div class="score-label">punkti · ${pct}%</div>
+      </div>
+      <div class="complete-actions">
+        <button class="btn-primary" onclick="startTopic('${state.currentSubject}','${t.id}')">🔄 Korda teemat</button>
+        <button class="btn-secondary" onclick="showSubject('${state.currentSubject}')">← Tagasi teemade juurde</button>
+      </div>
+    </div>`;
+        document.querySelector(".quiz-header").innerHTML = "";
+        window.scrollTo(0, 0);
+      }
+
+      // ═══════════════════════════════════════════
+      // EXAM
+      // ═══════════════════════════════════════════
+      function updateExamPage() {
+        const hist = progress.examHistory;
+        const wrap = document.getElementById("exam-history-wrap");
+        const list = document.getElementById("exam-history-list");
+        if (hist.length > 0) {
+          wrap.classList.remove("hidden");
+          list.innerHTML = hist
+            .slice(-3)
+            .reverse()
+            .map(
+              (e) => `
+      <div class="topic-card" style="cursor:default">
+        <div class="topic-left">
+          <div class="topic-icon-wrap">📝</div>
+          <div>
+            <div class="topic-name">${e.score} / ${e.maxScore} punkti</div>
+            <div class="topic-meta">${e.correct} / ${e.total} õiget · ${e.date}</div>
+          </div>
+        </div>
+        <span class="topic-badge" style="background:var(--primary-light);color:var(--primary)">${e.grade}</span>
+      </div>`,
+            )
+            .join("");
+        }
+      }
+
+      function getExamQuestions() {
+        const all = [];
+        Object.values(DATA).forEach((subj) => {
+          subj.topics.forEach((t) => {
+            t.questions.forEach((q) =>
+              all.push({
+                ...q,
+                topicId: t.id,
+                topicName: t.name,
+                subject: subj.name,
+              }),
+            );
+          });
+        });
+        const shuffled = all.sort(() => Math.random() - 0.5);
+        return shuffled.slice(0, 20);
+      }
+
+      function startExam() {
+        state.examQuestions = getExamQuestions();
+        state.examQIdx = 0;
+        state.examScore = 0;
+        state.examCorrect = 0;
+        state.examTimeLeft = 1800;
+        state.examHintPenalty = 0;
+        state.currentHintIdx = 0;
+        state.answered = false;
+
+        document.getElementById("exam-setup-view").classList.add("hidden");
+        document.getElementById("exam-results-view").classList.add("hidden");
+        document.getElementById("exam-active-view").classList.remove("hidden");
+
+        startTimer();
+        renderExamQuestion();
+        window.scrollTo(0, 0);
+      }
+
+      function startTimer() {
+        if (state.examTimer) clearInterval(state.examTimer);
+        state.examTimer = setInterval(() => {
+          state.examTimeLeft--;
+          updateTimer();
+          if (state.examTimeLeft <= 0) {
+            clearInterval(state.examTimer);
+            finishExam();
+          }
+        }, 1000);
+      }
+
+      function updateTimer() {
+        const m = Math.floor(state.examTimeLeft / 60);
+        const s = state.examTimeLeft % 60;
+        const disp = document.getElementById("timer-display");
+        const fill = document.getElementById("timer-fill");
+        if (!disp) return;
+        disp.textContent = m + ":" + String(s).padStart(2, "0");
+        const pct = (state.examTimeLeft / 1800) * 100;
+        if (fill) fill.style.width = pct + "%";
+        const warn = state.examTimeLeft < 300;
+        if (disp) disp.classList.toggle("warning", warn);
+        if (fill) fill.classList.toggle("warning", warn);
+      }
+
+      function renderExamQuestion() {
+        const q = state.examQuestions[state.examQIdx];
+        const total = state.examQuestions.length;
+        state.answered = false;
+        state.currentHintIdx = 0;
+
+        document.getElementById("exam-q-counter").textContent =
+          state.examQIdx + 1 + "/" + total;
+
+        let html = `<div class="question-card">
+    <div class="question-points" style="display:flex;justify-content:space-between">
+      <span>⭐ ${q.pts} punkti</span>
+      <span style="font-size:11px;opacity:0.6">${q.topicName}</span>
+    </div>
+    <div class="question-text">${q.q}</div>`;
+
+        if (q.type === "multiple") {
+          html +=
+            `<div class="options-grid">` +
+            q.options
+              .map(
+                (o, i) =>
+                  `<button class="option-btn" id="eopt-${i}" onclick="examCheckMultiple('${escQ(o)}','${escQ(q.ans)}',${q.pts},${i})">${o}</button>`,
+              )
+              .join("") +
+            `</div>`;
+        } else {
+          html += `<div class="input-wrap">
+      <input class="answer-input" id="exam-ans-input" type="text" placeholder="Kirjuta vastus..."
+        onkeydown="if(event.key==='Enter')examCheckInput('${escQ(q.ans)}',${q.pts})">
+      <button class="submit-btn" onclick="examCheckInput('${escQ(q.ans)}',${q.pts})">→</button>
+    </div>`;
+        }
+
+        html += `</div>
+  <div class="hint-section">
+    <button class="hint-btn" id="exam-hint-btn" onclick="examShowHint()">💡 Vihje <span style="font-size:11px;opacity:0.7">(−0.5p)</span></button>
+    <div id="exam-hint-display"></div>
+  </div>
+  <div id="exam-feedback-area"></div>
+  <div class="quiz-actions hidden" id="exam-next-actions">
+    <button class="next-btn" onclick="examNextQuestion()">${state.examQIdx < total - 1 ? "Järgmine →" : "🏁 Lõpeta eksam"}</button>
+  </div>`;
+
+        document.getElementById("exam-quiz-content").innerHTML = html;
+
+        if (q.type === "input") {
+          setTimeout(() => {
+            const i = document.getElementById("exam-ans-input");
+            if (i) i.focus();
+          }, 100);
+        }
+      }
+
+      function examCheckMultiple(chosen, correct, pts, idx) {
+        if (state.answered) return;
+        state.answered = true;
+        const penalty = state.currentHintIdx * 0.5;
+        const earned = chosen === correct ? Math.max(0, pts - penalty) : 0;
+        state.examScore += earned;
+        if (chosen === correct) state.examCorrect++;
+        document.querySelectorAll('[id^="eopt-"]').forEach((btn, i) => {
+          btn.disabled = true;
+          if (btn.textContent === correct) btn.classList.add("correct");
+          else if (i === idx && chosen !== correct) btn.classList.add("wrong");
+        });
+        examShowFeedback(
+          chosen === correct,
+          earned,
+          pts,
+          state.examQuestions[state.examQIdx],
+        );
+        document.getElementById("exam-next-actions").classList.remove("hidden");
+        const hb = document.getElementById("exam-hint-btn");
+        if (hb) hb.disabled = true;
+      }
+
+      function examCheckInput(correct, pts) {
+        if (state.answered) return;
+        const inp = document.getElementById("exam-ans-input");
+        if (!inp) return;
+        const val = inp.value.trim().replace(",", ".");
+        const correctClean = correct.toString().replace(",", ".");
+        const isCorrect =
+          parseFloat(val) === parseFloat(correctClean) ||
+          val.toLowerCase() === correctClean.toLowerCase();
+        state.answered = true;
+        const penalty = state.currentHintIdx * 0.5;
+        const earned = isCorrect ? Math.max(0, pts - penalty) : 0;
+        state.examScore += earned;
+        if (isCorrect) state.examCorrect++;
+        inp.classList.add(isCorrect ? "correct" : "wrong");
+        inp.disabled = true;
+        examShowFeedback(
+          isCorrect,
+          earned,
+          pts,
+          state.examQuestions[state.examQIdx],
+        );
+        document.getElementById("exam-next-actions").classList.remove("hidden");
+        const hb = document.getElementById("exam-hint-btn");
+        if (hb) hb.disabled = true;
+      }
+
+      function examShowFeedback(correct, earned, maxPts, q) {
+        const fb = document.getElementById("exam-feedback-area");
+        fb.innerHTML = `<div class="feedback-card ${correct ? "correct" : "wrong"}">
+    <div class="feedback-title">${correct ? "✅ Õige!" : "❌ Vale"}
+      <span style="margin-left:auto">+${earned.toFixed(earned % 1 ? 1 : 0)}/${maxPts}p</span>
+    </div>
+    ${!correct ? `<div style="font-size:14px;margin-bottom:6px">Õige: <strong>${q.ans}</strong></div>` : ""}
+    <div class="steps-list">${q.steps.map((s) => `<div class="step">${s}</div>`).join("")}</div>
+  </div>`;
+      }
+
+      function examShowHint() {
+        const q = state.examQuestions[state.examQIdx];
+        if (state.currentHintIdx >= q.hints.length) return;
+        const hint = q.hints[state.currentHintIdx];
+        state.currentHintIdx++;
+        document.getElementById("exam-hint-display").innerHTML =
+          `<div class="hint-box">
+    <div class="hint-header"><span>💡 Vihje ${state.currentHintIdx}</span>
+      <span class="hint-cost">−${(state.currentHintIdx * 0.5).toFixed(1)}p</span>
+    </div>${hint}</div>`;
+        if (state.currentHintIdx >= q.hints.length) {
+          const hb = document.getElementById("exam-hint-btn");
+          if (hb) {
+            hb.textContent = "💡 Rohkem pole";
+            hb.disabled = true;
+          }
+        }
+      }
+
+      function examNextQuestion() {
+        if (state.examQIdx < state.examQuestions.length - 1) {
+          state.examQIdx++;
+          renderExamQuestion();
+          window.scrollTo(0, 0);
+        } else {
+          finishExam();
+        }
+      }
+
+      function finishExam() {
+        if (state.examTimer) clearInterval(state.examTimer);
+        document.getElementById("exam-active-view").classList.add("hidden");
+
+        const maxScore = state.examQuestions.reduce((s, q) => s + q.pts, 0);
+        const pct = Math.round((state.examScore / maxScore) * 100);
+        let grade, gradeClass, msg;
+        if (pct >= 90) {
+          grade = "A";
+          gradeClass = "grade-A";
+          msg = "Erakordne! Sa oled eksamiks valmis! 🌟";
+        } else if (pct >= 75) {
+          grade = "B";
+          gradeClass = "grade-B";
+          msg = "Väga hea tulemus! Väike kordamine ja oled valmis! 💪";
+        } else if (pct >= 55) {
+          grade = "C";
+          gradeClass = "grade-C";
+          msg = "Rahuldav. Korratavad teemad on allpool. 📚";
+        } else {
+          grade = "D";
+          gradeClass = "grade-D";
+          msg = "Harjuta veel — fookusta nõrkadele kohtadele! 🎯";
+        }
+
+        // Save to history
+        const now = new Date();
+        progress.examHistory.push({
+          score: Math.round(state.examScore),
+          maxScore,
+          correct: state.examCorrect,
+          total: state.examQuestions.length,
+          grade,
+          date: now.toLocaleDateString("et-EE"),
+          pct,
+        });
+        if (progress.examHistory.length > 10)
+          progress.examHistory = progress.examHistory.slice(-10);
+        saveProgress();
+
+        // Weak topics analysis
+        const topicResults = {};
+        state.examQuestions.forEach((q, i) => {
+          if (!topicResults[q.topicId])
+            topicResults[q.topicId] = {
+              name: q.topicName,
+              correct: 0,
+              total: 0,
+            };
+          topicResults[q.topicId].total++;
+        });
+
+        const recos = Object.values(topicResults)
+          .filter((t) => t.correct / t.total < 0.7)
+          .map((t) => t.name);
+
+        const resultsView = document.getElementById("exam-results-view");
+        resultsView.innerHTML = `<div class="exam-results">
+    <div style="font-size:20px;font-weight:700">Eksam lõppenud!</div>
+    <div class="exam-grade ${gradeClass}">${grade}</div>
+    <div style="font-size:14px;color:var(--text2);margin-bottom:16px">${msg}</div>
+    <div class="results-grid">
+      <div class="result-item"><div class="v blue">${Math.round(state.examScore)} / ${maxScore}</div><div class="l">Punktid</div></div>
+      <div class="result-item"><div class="v ${pct >= 75 ? "green" : "red"}">${pct}%</div><div class="l">Tulemus</div></div>
+      <div class="result-item"><div class="v green">${state.examCorrect}</div><div class="l">Õiget vastust</div></div>
+      <div class="result-item"><div class="v red">${state.examQuestions.length - state.examCorrect}</div><div class="l">Vale vastust</div></div>
+    </div>
+    ${
+      recos.length > 0
+        ? `<div class="reco-section">
+      <h4>📌 Soovitame korrata:</h4>
+      <ul class="reco-list">${recos.map((r) => `<li>📖 ${r}</li>`).join("")}</ul>
+    </div>`
+        : '<div class="reco-section"><h4>🎉 Kõik teemad on hästi selged!</h4></div>'
+    }
+    <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+      <button class="btn-primary" onclick="startExam()">🔄 Proovi uuesti</button>
+      <button class="btn-secondary" onclick="backToExamSetup()">← Tagasi</button>
+    </div>
+  </div>`;
+        resultsView.classList.remove("hidden");
+        window.scrollTo(0, 0);
+      }
+
+      function backToExamSetup() {
+        document.getElementById("exam-active-view").classList.add("hidden");
+        document.getElementById("exam-results-view").classList.add("hidden");
+        document.getElementById("exam-setup-view").classList.remove("hidden");
+        updateExamPage();
+      }
+
+      // ═══════════════════════════════════════════
+      // INIT
+      // ═══════════════════════════════════════════
+      updateHome();
+    </script>
+  </body>
+</html>
